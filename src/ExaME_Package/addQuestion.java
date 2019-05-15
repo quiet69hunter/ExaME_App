@@ -1,11 +1,14 @@
 package ExaME_Package;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
@@ -15,7 +18,20 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+
 public class addQuestion extends Application {
+
+    public ArrayList<Question> questions = new ArrayList<>();
+
+
+    public void viewQuestions()
+    {
+        for (Question q: questions)
+        {
+            System.out.println(q);
+        }
+    }
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -100,6 +116,77 @@ public class addQuestion extends Application {
         grid.add(indexOFCorrectAnswer_T, 1, 8);
 
 
+
+        //  BUTTON
+
+        Button button = new Button();
+        button.setText("Add this question to test");
+
+
+        //  Ustawiam co ma sie dziac po nacisnieciu przycisku
+        button.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event)
+            {
+
+                // Pola questionNum i correctAnswer sa do poprawy
+
+                Integer questionNum = 1;
+                Integer correctAnswer = 1;
+
+
+
+                //  Tak wyglada konstruktor Question:
+                //Question(Integer questionNumber, String questionContent, ArrayList<String> answers, Integer correctAnswer, Integer pointsForCorrectAnswer, Integer pointsForWrongAnswer)
+
+                ArrayList<String> answers = new ArrayList<>();
+                answers.add(answerA_T.getText());
+                answers.add(answerB_T.getText());
+                answers.add(answerC_T.getText());
+                answers.add(answerD_T.getText());
+
+                Integer pointsForCorrectAnswer = 1;
+                Integer pointsForWrongAnswer = 1;
+
+                if(!correctAnswer_T.getText().toString().isEmpty())
+                {
+                    pointsForCorrectAnswer = Integer.parseInt(correctAnswer_T.getText());
+                }
+                if(!wrongAnswer_T.getText().toString().isEmpty())
+                {
+                    pointsForWrongAnswer = Integer.parseInt(wrongAnswer_T.getText());
+                }
+
+
+                Question q = new Question(questionNum, questionContent_T.getText(), answers, correctAnswer, pointsForCorrectAnswer, pointsForWrongAnswer);
+                questions.add(q);
+
+                viewQuestions();
+                System.out.println();
+
+                questionContent_T.setText("");
+
+                answerA_T.setText("");
+                answerB_T.setText("");
+                answerC_T.setText("");
+                answerD_T.setText("");
+
+                correctAnswer_T.setText("");
+                wrongAnswer_T.setText("");
+
+
+
+
+
+
+
+
+            }
+        });
+        grid.add(button, 1, 9);     //  dodaje przycisk do widoku
+
+
+        //  END BUTTON
 
 
 
