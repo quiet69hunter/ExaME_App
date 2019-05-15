@@ -26,19 +26,21 @@ import java.util.regex.Pattern;
 
 
 /*
-Plik ze GUI dla dodawania pytania ( Lecturer Module )
+Plik ze GUI dla dodawania nowego użytkownika ( Administrator Module )
 
 
 
 UPDATES
 
-15.05.2019 - Kotecki - otworzenie GUI i metody addQuestion od nowa w JavaFX
+15.05.2019 - Kotecki - otworzenie GUI
 
 
 
 LIST OF THING TO IMPROVE/ADD
 
 * ustawic limit znaków jaki można wpisać do okienka na takie jak to zostało określone w wymaganiach funkcjonalnych
+* wyswietlanie komunikatu ze email jest nieprawidlowy
+* ewentualie validacja hasła (długość, musi zawierać cyfry) i wyświetlanie komunikatu
 * DESIGN - COLORS, FONTS
 
 
@@ -62,6 +64,9 @@ public class addNewUserToDatabase extends Application {
 
     //  funkcja validateEmail zwroci true jesli to co zostalo podane to email
     //  jesli to niepoprawny adres email - zwroci false
+
+    // Poprawny format emaila: ZNAKI MAŁPA ZNAKI KROPKA ZNAKI
+    //  np. janusznosacz2@onet.pl
 
 
     public Boolean validateEmail(String email)
