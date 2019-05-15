@@ -49,7 +49,7 @@ public class Lecturer extends User {
 
     public Integer generateNewKeyForTest(Integer testID)
     {
-
+        return 0;
     }
 
 
