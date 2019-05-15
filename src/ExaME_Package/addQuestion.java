@@ -20,6 +20,37 @@ import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
+
+
+
+
+
+/*
+Plik ze GUI dla dodawania pytania ( Lecturer Module )
+
+
+
+UPDATES
+
+15.05.2019 - Kotecki - otworzenie GUI i metody addQuestion od nowa w JavaFX
+
+
+
+LIST OF THING TO IMPROVE/ADD
+
+* trzeba połączyć wszystkie radioButtons w radioGroup
+* ustawic limit znaków jaki można wpisać do okienka na takie jak to zostało określone w wymaganiach funkcjonalnych
+* DESIGN - COLORS, FONTS
+
+
+ */
+
+
+
+
+
+
+
 public class addQuestion extends Application {
 
     public ArrayList<Question> questions = new ArrayList<>();

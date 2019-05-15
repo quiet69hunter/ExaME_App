@@ -2,6 +2,29 @@ package ExaME_Package;
 
 import java.util.ArrayList;
 
+
+/*
+Klasa reprexentująca pojedyncze pytanie
+
+
+
+UPDATES
+
+15.05.2019 - Kotecki - otworzenie klasy
+
+
+
+LIST OF THING TO IMPROVE/ADD
+
+* Uzupełnić ciała metod
+
+ */
+
+
+
+
+
+
 public class Question {
     @Override
     public String toString() {
