@@ -17,6 +17,8 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 
@@ -48,13 +50,34 @@ public class addNewUserToDatabase extends Application {
     public ArrayList<User> users = new ArrayList<>();
 
 
-    public void viewQuestions()
+    public void viewUsers()
     {
         for (User u: users)
         {
             System.out.println(u);
         }
     }
+
+
+
+    //  funkcja validateEmail zwroci true jesli to co zostalo podane to email
+    //  jesli to niepoprawny adres email - zwroci false
+
+
+    public Boolean validateEmail(String email)
+    {
+        String emailRegex = ".+@.+\\..+";
+        Pattern p = Pattern.compile(emailRegex);
+
+
+
+
+            Matcher m = p.matcher(email);
+            return m.matches();
+    }
+
+
+
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -129,51 +152,35 @@ public class addNewUserToDatabase extends Application {
             public void handle(ActionEvent event)
             {
 
-//                // Pola questionNum i correctAnswer sa do poprawy
-//
-//                Integer questionNum = 1;
-//                Integer correctAnswer = 1;
-//
-//
-//
-//                //  Tak wyglada konstruktor Question:
-//                //Question(Integer questionNumber, String questionContent, ArrayList<String> answers, Integer correctAnswer, Integer pointsForCorrectAnswer, Integer pointsForWrongAnswer)
-//
-//                ArrayList<String> answers = new ArrayList<>();
-//                answers.add(answerA_T.getText());
-//                answers.add(answerB_T.getText());
-//                answers.add(answerC_T.getText());
-//                answers.add(answerD_T.getText());
-//
-//                Integer pointsForCorrectAnswer = 1;
-//                Integer pointsForWrongAnswer = 1;
-//
-//                if(!correctAnswer_T.getText().toString().isEmpty())
-//                {
-//                    pointsForCorrectAnswer = Integer.parseInt(correctAnswer_T.getText());
-//                }
-//                if(!wrongAnswer_T.getText().toString().isEmpty())
-//                {
-//                    pointsForWrongAnswer = Integer.parseInt(wrongAnswer_T.getText());
-//                }
-//
-//
-//                Question q = new Question(questionNum, questionContent_T.getText(), answers, correctAnswer, pointsForCorrectAnswer, pointsForWrongAnswer);
-//                questions.add(q);
-//
-//                viewQuestions();
-//                System.out.println();
-//
-//                questionContent_T.setText("");
-//
-//                answerA_T.setText("");
-//                answerB_T.setText("");
-//                answerC_T.setText("");
-//                answerD_T.setText("");
-//
-//                correctAnswer_T.setText("");
-//                wrongAnswer_T.setText("");
-//
+                //  Wykonuje operacje jeżeli podany email jest prawidłowy
+
+                if(validateEmail(email_T.getText()))
+                {
+                    User newUser = new  User(name_T.getText(), surname_T.getText(), email_T.getText(), password_T.getText());
+
+                    users.add(newUser);
+                    viewUsers();
+                    System.out.println();
+
+
+
+                    name_T.setText("");
+                    surname_T.setText("");
+                    email_T.setText("");
+                    password_T.setText("");
+                    accountType_T.setText("");
+
+
+                }
+                else
+                {
+                    System.out.println("Podano nie poprawny email! :-(");
+                }
+
+
+
+
+
 
 
 

@@ -29,6 +29,17 @@ public class User {
     protected String Email;
     protected String Password;
 
+    public User()
+    {
+
+    }
+
+    public User(String name, String surname, String email, String password) {
+        Name = name;
+        Surname = surname;
+        Email = email;
+        Password = password;
+    }
 
     public Boolean Login (String email, String Password)
     {
