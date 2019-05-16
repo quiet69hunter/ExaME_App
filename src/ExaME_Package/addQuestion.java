@@ -33,7 +33,7 @@ Plik ze GUI dla dodawania pytania ( Lecturer Module )
 UPDATES
 
 15.05.2019 - Kotecki - otworzenie GUI i metody addQuestion od nowa w JavaFX
-
+16.05.2019 - Kopera - test
 
 
 LIST OF THING TO IMPROVE/ADD
