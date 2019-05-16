@@ -93,7 +93,7 @@ public class addNewUserToDatabase extends Application {
 
         //  GRID
 
-        var grid = new GridPane();
+        GridPane grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
         grid.setHgap(20);         //  Horizontal gap
         grid.setVgap(20);          //  Vertical gap

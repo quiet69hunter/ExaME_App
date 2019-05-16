@@ -34,6 +34,7 @@ UPDATES
 
 15.05.2019 - Kotecki - otworzenie GUI i metody addQuestion od nowa w JavaFX
 16.05.2019 - Kopera - test2
+16.05.2019 - Kotecki - test3
 
 
 LIST OF THING TO IMPROVE/ADD
@@ -73,7 +74,7 @@ public class addQuestion extends Application {
 
         //  GRID
 
-        var grid = new GridPane();
+        GridPane grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
         grid.setHgap(20);         //  Horizontal gap
         grid.setVgap(20);          //  Vertical gap
