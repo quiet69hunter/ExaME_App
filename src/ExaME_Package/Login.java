@@ -33,6 +33,7 @@ Plik ze GUI dla logowania ( USER Module )
 UPDATES
 
 15.05.2019 - Kotecki - otworzenie GUI
+18.05.2019 - Kopera - zrobienie wstepnego interfejsu
 
 
 
@@ -82,33 +83,35 @@ public class Login extends Application {
         //  GRID
 
         GridPane grid = new GridPane();
-        grid.setAlignment(Pos.CENTER);
-        grid.setHgap(20);         //  Horizontal gap
-        grid.setVgap(20);          //  Vertical gap
+        grid.setId("grid");
 
-        grid.setPadding(new Insets(25, 25, 25, 25));
+        /*
+        //Stworzyc pasek boczny w kolumnie 0
+        Text navContainer = new Text("text");
+        grid.add(navContainer, 0,0);
+        navContainer.setId("navContainer");*/
 
         Text scenetitle = new Text("LOGIN"); //   Tekst
-        scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 25));
-        grid.add(scenetitle, 0, 0, 2, 1);   //  Ustawiam w ktorym miejscu siatki ma byc dodany element
-
-
+        scenetitle.setId("mainTitle");
+        grid.add(scenetitle, 1, 0, 2, 1);   //  Ustawiam w ktorym miejscu siatki ma byc dodany element
 
 
 
         Label email_L = new Label("EMAIL:");
-        grid.add(email_L, 0, 1);
+        grid.add(email_L, 1, 1);
 
         TextField email_T = new TextField();
-        grid.add(email_T, 1, 1);
+        grid.add(email_T, 2, 1);
+        email_T.setId("email_T");
 
 
 
         Label password_L = new Label("PASSWORD:");
-        grid.add(password_L, 0, 2);
+        grid.add(password_L, 1, 2);
 
         PasswordField password_T = new PasswordField();
-        grid.add(password_T, 1, 2);
+        grid.add(password_T, 2, 2);
+        password_T.setId("password_T");
 
 
 
@@ -119,6 +122,7 @@ public class Login extends Application {
 
         Button button = new Button();
         button.setText("LOGIN");
+
 
 
         //  Ustawiam co ma sie dziac po nacisnieciu przycisku
@@ -159,7 +163,7 @@ public class Login extends Application {
 
             }
         });
-        grid.add(button, 1, 3);     //  dodaje przycisk do widoku
+        grid.add(button, 2, 3);     //  dodaje przycisk do widoku
 
 
         //  END BUTTON
@@ -167,9 +171,11 @@ public class Login extends Application {
 
 
 
-
-        primaryStage.setScene(new Scene(grid, 400, 500));
+        Scene scene = new Scene(grid, 1600,900);
+        primaryStage.setScene(scene);
+        scene.getStylesheets().add(Login.class.getResource("Style.css").toExternalForm());
         primaryStage.show();
+
     }
 
 
