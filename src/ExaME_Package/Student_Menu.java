@@ -29,6 +29,7 @@ Plik ze GUI menu studenta ( Student Module )
 UPDATES
 
 15.05.2019 - Kotecki - otworzenie GUI
+18.05.2019 - Kopera - zrobienie wstepnego interfejsu
 
 
 
@@ -57,14 +58,10 @@ public class Student_Menu extends Application {
         //  GRID
 
         GridPane grid = new GridPane();
-        grid.setAlignment(Pos.CENTER);
-        grid.setHgap(20);         //  Horizontal gap
-        grid.setVgap(20);          //  Vertical gap
-
-        grid.setPadding(new Insets(25, 25, 25, 25));
+        grid.setId("grid");
 
         Text scenetitle = new Text("MENU"); //   Tekst
-        scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 25));
+        scenetitle.setId("mainTitle");
         grid.add(scenetitle, 0, 0, 2, 1);   //  Ustawiam w ktorym miejscu siatki ma byc dodany element
 
 
@@ -111,8 +108,11 @@ public class Student_Menu extends Application {
 
 
 
-        primaryStage.setScene(new Scene(grid, 400, 500));
+        Scene scene = new Scene(grid, 1600,900);
+        primaryStage.setScene(scene);
+        scene.getStylesheets().add(Login.class.getResource("Style.css").toExternalForm());
         primaryStage.show();
+
     }
 
 

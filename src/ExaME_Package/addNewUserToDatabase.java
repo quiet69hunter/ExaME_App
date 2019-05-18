@@ -33,6 +33,7 @@ Plik ze GUI dla dodawania nowego użytkownika ( Administrator Module )
 UPDATES
 
 15.05.2019 - Kotecki - otworzenie GUI
+18.05.2019 - Kopera - zrobienie wstepnego interfejsu
 
 
 
@@ -47,7 +48,8 @@ LIST OF THING TO IMPROVE/ADD
  */
 
 
-public class addNewUserToDatabase extends Application {
+public class
+addNewUserToDatabase extends Application {
 
     public ArrayList<User> users = new ArrayList<>();
 
@@ -94,14 +96,10 @@ public class addNewUserToDatabase extends Application {
         //  GRID
 
         GridPane grid = new GridPane();
-        grid.setAlignment(Pos.CENTER);
-        grid.setHgap(20);         //  Horizontal gap
-        grid.setVgap(20);          //  Vertical gap
-
-        grid.setPadding(new Insets(25, 25, 25, 25));
+        grid.setId("grid");
 
         Text scenetitle = new Text("CREATE NEW USER ACCOUNT"); //   Tekst
-        scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 25));
+        scenetitle.setId("mainTitle");
         grid.add(scenetitle, 0, 0, 2, 1);   //  Ustawiam w ktorym miejscu siatki ma byc dodany element
 
 
@@ -202,10 +200,11 @@ public class addNewUserToDatabase extends Application {
 
 
 
-
-
-        primaryStage.setScene(new Scene(grid, 400, 500));
+        Scene scene = new Scene(grid, 1600,900);
+        primaryStage.setScene(scene);
+        scene.getStylesheets().add(Login.class.getResource("Style.css").toExternalForm());
         primaryStage.show();
+
     }
 
 

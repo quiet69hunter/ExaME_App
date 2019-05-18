@@ -1,0 +1,50 @@
+root {
+    display: block;
+}
+.root {
+    -fx-background-color: #111111;
+}
+.label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+    -fx-font-family:"Arial", Times, serif;
+}
+GridPane {
+    -fx-alignment:center;
+    -fx-text-alignment:25px;
+    -fx-hgap:20px;
+    -fx-vgap:20px;
+    -fx-padding:25px 25px 25px 25px;
+
+}
+#mainTitle{
+    -fx-font-size:30px;
+    -fx-font-weight: bold;
+    -fx-fill: #ffffff;
+    -fx-font-family:"Arial", Times, serif;
+}
+Button {
+    -fx-text-fill: white;
+    -fx-font-family: "Arial";
+    -fx-font-weight: bold;
+    -fx-background-color: #992e2e;
+    -fx-padding:10px 20px 10px 20px;
+}
+TextField {
+    -fx-text-fill: white;
+    -fx-background-color: #313131;
+}
+
+PasswordField {
+    -fx-text-fill: white;
+    -fx-background-color: #313131;
+}
+/*
+#navContainer {
+    -fx-font-size:30px;
+    -fx-font-weight: bold;
+    -fx-fill: #ffffff;
+    -fx-font-family:"Arial", Times, serif;
+    -fx-background-color: #070707;
+}*/
