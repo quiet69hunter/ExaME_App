@@ -19,12 +19,9 @@ public class DataBaseManager {
     static final String Password = "1The2Sleepers3";
 
 
-    private Connection connection = null;
-    private Statement statement = null;
-
-
     public List<Map<String, Object>> resultList = new ArrayList<Map<String, Object>>();
     public Map<String, Object> row = null;
+
 
     DataBaseManager() throws ClassNotFoundException {
         //  driver
@@ -46,25 +43,18 @@ public class DataBaseManager {
 
     public void sendQuery(String sqlQuery)
     {
+        resultList.clear();
 
 
-        try {
-
-            //  connect to database
-
-            connection = getConnection(URL, UserName, Password);
-
-
-            //  execute query
-
-            statement = connection.createStatement();
-
-            ResultSet resultSet = statement.executeQuery(sqlQuery);
+            //  blok try-wth-resources
+        try (
+                Connection connection = getConnection(URL, UserName, Password);
+                Statement statement = connection.createStatement();
+                ResultSet resultSet = statement.executeQuery(sqlQuery)
+        ){
 
             ResultSetMetaData metaData = resultSet.getMetaData();
             Integer columnCount = metaData.getColumnCount();
-
-
 
             while (resultSet.next()) {
                 row = new HashMap<String, Object>();
@@ -75,21 +65,9 @@ public class DataBaseManager {
                 resultList.add(row);
             }
 
-            connection.close();
-            statement.close();
-
 
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            try {
-                if (statement != null) {
-                    statement.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-
         }
 
     }
@@ -101,7 +79,9 @@ public class DataBaseManager {
         DataBaseManager o = new DataBaseManager();
 
         String sqlQuery = "SELECT id, nazwa, id_uzytkownika FROM przedmiot";
+
         o.sendQuery(sqlQuery);
+
 
         for( Map<String, Object> temp : o.resultList) {
             System.out.println(temp.values());
