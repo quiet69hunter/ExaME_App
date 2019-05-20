@@ -17,6 +17,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -76,9 +77,6 @@ addNewUserToDatabase extends Application {
         String emailRegex = ".+@.+\\..+";
         Pattern p = Pattern.compile(emailRegex);
 
-
-
-
             Matcher m = p.matcher(email);
             return m.matches();
     }
@@ -86,12 +84,8 @@ addNewUserToDatabase extends Application {
 
 
 
-    @Override
-    public void start(Stage primaryStage) throws Exception{
-
-
-        primaryStage.setTitle("ADD NEW USER TO DATABASE");
-
+    public Scene getAddNewUserToDatabase()
+    {
 
         //  GRID
 
@@ -114,6 +108,7 @@ addNewUserToDatabase extends Application {
         Label surname_L = new Label("SURNAME:");
         grid.add(surname_L, 0, 2);
 
+
         TextField surname_T = new TextField();
         grid.add(surname_T, 1, 2);
 
@@ -132,8 +127,6 @@ addNewUserToDatabase extends Application {
         PasswordField password_T = new PasswordField();
         grid.add(password_T, 1, 4);
 
-
-
         Label accountType_L = new Label("ACCOUNT TYPE:");
         grid.add(accountType_L, 0, 5);
 
@@ -148,7 +141,6 @@ addNewUserToDatabase extends Application {
         Button button = new Button();
         button.setText("CREATE ACCOUNT");
 
-
         //  Ustawiam co ma sie dziac po nacisnieciu przycisku
         button.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -162,10 +154,33 @@ addNewUserToDatabase extends Application {
                     User newUser = new  User(name_T.getText(), surname_T.getText(), email_T.getText(), password_T.getText());
 
                     users.add(newUser);
+
+
+                   // String sgl = "INSERT INTO `uzytkowniki` (`id`, `imie`, `nazwisko`, `email`, `haslo`, `dostep`, `index`) VALUES (1, 'Tomasz', 'Gwizdalla', 'tgwizd@gmail.com', 'admin', 'administrator', NULL);";
+                    String sgl = "INSERT INTO `uzytkowniki` (`id`, `imie`, `nazwisko`, `email`, `haslo`, `dostep`, `index`) VALUES (1, '" + name_T.getText() + "', '" + surname_T.getText() + "', '" + email_T.getText() + "', '" + password_T.getText() + "', '" + accountType_T.getText() + "', " + "NULL" + ");";
+
+                    DataBaseManager dataBaseManager = null;
+                    try {
+                        dataBaseManager = new DataBaseManager();
+                    } catch (ClassNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                    dataBaseManager.sendQuery(sgl);
+
+
+
+
+                    String sgl2 = "SELECT * FROM `uzytkowniki`";
+                    dataBaseManager.sendQuery(sgl2);    //  To potem usunac
+                    for( Map<String, Object> temp : dataBaseManager.resultList) {
+                        System.out.println(temp.values());
+                    }
+
+
+
+
                     viewUsers();
                     System.out.println();
-
-
 
                     name_T.setText("");
                     surname_T.setText("");
@@ -173,22 +188,11 @@ addNewUserToDatabase extends Application {
                     password_T.setText("");
                     accountType_T.setText("");
 
-
                 }
                 else
                 {
                     System.out.println("Podano nie poprawny email! :-(");
                 }
-
-
-
-
-
-
-
-
-
-
 
 
             }
@@ -201,8 +205,23 @@ addNewUserToDatabase extends Application {
 
 
         Scene scene = new Scene(grid, 1600,900);
+
+        return scene;
+    }
+
+
+
+
+
+
+    @Override
+    public void start(Stage primaryStage) throws Exception{
+
+
+        Scene scene = new addNewUserToDatabase().getAddNewUserToDatabase();
         primaryStage.setScene(scene);
         scene.getStylesheets().add(Login.class.getResource("Style.css").toExternalForm());
+        primaryStage.setTitle("ADD NEW USER TO DATABASE");
         primaryStage.show();
 
     }
