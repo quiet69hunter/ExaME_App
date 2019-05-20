@@ -225,6 +225,16 @@ public class addQuestion extends Application {
         scene.getStylesheets().add(Login.class.getResource("Style.css").toExternalForm());
         primaryStage.show();
 
+
+
+
+        // w taki sposob odbywa sie zmiana sceny;
+
+        primaryStage.setScene(new Login().getLoginScene());
+        scene.getStylesheets().add(Login.class.getResource("Style.css").toExternalForm());
+        primaryStage.setTitle("Login");
+        primaryStage.show();
+
     }
 
 
