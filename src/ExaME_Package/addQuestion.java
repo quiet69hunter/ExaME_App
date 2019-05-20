@@ -66,12 +66,10 @@ public class addQuestion extends Application {
         }
     }
 
-    @Override
-    public void start(Stage primaryStage) throws Exception{
 
 
-        primaryStage.setTitle("addQuestion");
-
+    public Scene getAddQuestion()
+    {
 
         //  GRID
 
@@ -221,18 +219,26 @@ public class addQuestion extends Application {
 
 
         Scene scene = new Scene(grid, 1600,900);
-        primaryStage.setScene(scene);
-        scene.getStylesheets().add(Login.class.getResource("Style.css").toExternalForm());
-        primaryStage.show();
+
+        return scene;
+    }
+
+
+    @Override
+    public void start(Stage primaryStage) throws Exception{
+
+
+        primaryStage.setTitle("addQuestion");
 
 
 
 
         // w taki sposob odbywa sie zmiana sceny;
 
-        primaryStage.setScene(new Login().getLoginScene());
+        Scene scene = new addQuestion().getAddQuestion();
+        primaryStage.setScene(scene);
         scene.getStylesheets().add(Login.class.getResource("Style.css").toExternalForm());
-        primaryStage.setTitle("Login");
+        primaryStage.setTitle("ADD QUESTION");
         primaryStage.show();
 
     }

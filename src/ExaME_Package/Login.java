@@ -172,10 +172,10 @@ public class Login extends Application {
     public void start(Stage primaryStage) throws Exception{
 
 
-        primaryStage.setTitle("LOG INTO YOUR ACCOUNT");
         Scene scene = new Login().getLoginScene();
-        primaryStage.setScene(new Login().getLoginScene());
+        primaryStage.setScene(scene);
         scene.getStylesheets().add(Login.class.getResource("Style.css").toExternalForm());
+        primaryStage.setTitle("Login");
         primaryStage.show();
     }
 
