@@ -156,22 +156,22 @@ addNewUserToDatabase extends Application {
                     users.add(newUser);
 
 
-                   // String sgl = "INSERT INTO `uzytkowniki` (`id`, `imie`, `nazwisko`, `email`, `haslo`, `dostep`, `index`) VALUES (1, 'Tomasz', 'Gwizdalla', 'tgwizd@gmail.com', 'admin', 'administrator', NULL);";
-                    String sgl = "INSERT INTO `uzytkowniki` (`id`, `imie`, `nazwisko`, `email`, `haslo`, `dostep`, `index`) VALUES (1, '" + name_T.getText() + "', '" + surname_T.getText() + "', '" + email_T.getText() + "', '" + password_T.getText() + "', '" + accountType_T.getText() + "', " + "NULL" + ");";
-
+                   // String sgl = "INSERT INTO `uzytkowniki` (`id`, `imie`, `nazwisko`, `email`, `haslo`, `dostep`, `index`) VALUES (1, 'Tomasz', 'Gwizdalla', 'tgwizd@gmail.com', 'admin', 'administrator', NULL)";
+                   String sgl = "INSERT INTO `uzytkowniki` ( `imie`, `nazwisko`, `email`, `haslo`, `dostep`, `index`) VALUES ('" + name_T.getText() + "', '" + surname_T.getText() + "', '" + email_T.getText() + "', '" + password_T.getText() + "', '" + accountType_T.getText() + "', " + "NULL" + ");";
+                    //String sgl = "INSERT INTO  `uzytkowniki` (  `id` ,  `imie` ,  `nazwisko` ,  `email` ,  `haslo` ,  `dostep` ,  `index` ) VALUES ( 5,  'Tomasz',  'Gwizdala',  'tg@gmail.com',  'haslo',  'administrator', NULL );";
                     DataBaseManager dataBaseManager = null;
                     try {
                         dataBaseManager = new DataBaseManager();
                     } catch (ClassNotFoundException e) {
                         e.printStackTrace();
                     }
-                    dataBaseManager.sendQuery(sgl);
+                    dataBaseManager.sendQuery_SET(sgl);
 
 
 
 
                     String sgl2 = "SELECT * FROM `uzytkowniki`";
-                    dataBaseManager.sendQuery(sgl2);    //  To potem usunac
+                    dataBaseManager.sendQuery_GET(sgl2);    //  To potem usunac
                     for( Map<String, Object> temp : dataBaseManager.resultList) {
                         System.out.println(temp.values());
                     }

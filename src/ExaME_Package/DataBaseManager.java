@@ -41,7 +41,7 @@ public class DataBaseManager {
     //  aby dostac sie do tych rzeczy należy podać mapie, tak jak bazie danych, np. "id" to zwroci, np 5.
 
 
-    public void sendQuery(String sqlQuery)
+    public void sendQuery_GET(String sqlQuery)
     {
         resultList.clear();
 
@@ -74,13 +74,37 @@ public class DataBaseManager {
 
 
 
+    public void sendQuery_SET(String sqlQuery)
+    {
+        resultList.clear();
+
+
+        //  blok try-wth-resources
+        try (
+                Connection connection = getConnection(URL, UserName, Password);
+                Statement statement = connection.createStatement();
+        ){
+
+            statement.executeUpdate(sqlQuery);
+
+            } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+
+
+
+
     public static void main(String[] args) throws NullPointerException, SQLException, ClassNotFoundException {
 
         DataBaseManager o = new DataBaseManager();
 
         String sqlQuery = "SELECT id, nazwa, id_uzytkownika FROM przedmiot";
 
-        o.sendQuery(sqlQuery);
+        o.sendQuery_GET(sqlQuery);
 
 
         for( Map<String, Object> temp : o.resultList) {
