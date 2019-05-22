@@ -51,6 +51,7 @@ LIST OF THING TO IMPROVE/ADD
 public class Login extends Application {
 
 
+    public Scene scene = null;
 
     //  validateData() sprawdza czy podany zestaw danych jest zgodny z tym
     //  co jest w bazie danych.
@@ -145,6 +146,13 @@ public class Login extends Application {
                     email_T.setText("");
                     password_T.setText("");
 
+                    scene = new addQuestion().getAddQuestion(); //  tu ustawic scene
+                    StartingPoint_Main.globalPrimaryStage.setScene(scene);
+                    StartingPoint_Main.globalScene.getStylesheets().add(addQuestion.class.getResource("Style.css").toExternalForm());
+                    StartingPoint_Main.globalPrimaryStage.setTitle("Add Question");
+                    StartingPoint_Main.globalPrimaryStage.show();
+
+
                 }
                 else
                 {
@@ -161,7 +169,7 @@ public class Login extends Application {
 
 
 
-        Scene scene = new Scene(grid, 1600,900);
+        scene = new Scene(grid, 1600,900);
 
         return scene;
     }

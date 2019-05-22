@@ -155,9 +155,9 @@ addNewUserToDatabase extends Application {
 
                     users.add(newUser);
 
-
+                      String sgl = "INSERT INTO `uzytkowniki` (`id`, `imie`, `nazwisko`, `email`, `haslo`, `dostep`, `index`) VALUES (1, 'Kamil', 'Rudy', 'kamil@gmail.com', 'admin', 'administrator', NULL)";
                    // String sgl = "INSERT INTO `uzytkowniki` (`id`, `imie`, `nazwisko`, `email`, `haslo`, `dostep`, `index`) VALUES (1, 'Tomasz', 'Gwizdalla', 'tgwizd@gmail.com', 'admin', 'administrator', NULL);";
-                    String sgl = "INSERT INTO `uzytkowniki` (`id`, `imie`, `nazwisko`, `email`, `haslo`, `dostep`, `index`) VALUES (1, '" + name_T.getText() + "', '" + surname_T.getText() + "', '" + email_T.getText() + "', '" + password_T.getText() + "', '" + accountType_T.getText() + "', " + "NULL" + ");";
+                   // String sgl = "INSERT INTO `uzytkowniki` (`id`, `imie`, `nazwisko`, `email`, `haslo`, `dostep`, `index`) VALUES (1, '" + name_T.getText() + "', '" + surname_T.getText() + "', '" + email_T.getText() + "', '" + password_T.getText() + "', '" + accountType_T.getText() + "', " + "NULL" + ");";
 
                     DataBaseManager dataBaseManager = null;
                     try {
