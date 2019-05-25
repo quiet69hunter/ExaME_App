@@ -23,22 +23,21 @@ LIST OF THING TO IMPROVE/ADD
 
 public class User {
 
-    protected Integer id;
+
     protected String Name;
     protected String Surname;
     protected String Email;
-    protected String Password;
+
 
     public User()
     {
 
     }
 
-    public User(String name, String surname, String email, String password) {
+    public User(String name, String surname, String email) {
         Name = name;
         Surname = surname;
         Email = email;
-        Password = password;
     }
 
     public Boolean Login (String email, String Password)

@@ -3,15 +3,13 @@ package ExaME_Package;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
+import java.sql.SQLException;
 
 
 
@@ -42,16 +40,8 @@ LIST OF THING TO IMPROVE/ADD
 public class Administrator_Menu extends Application {
 
 
-
-
-
-    @Override
-    public void start(Stage primaryStage) throws Exception{
-
-
-        primaryStage.setTitle("ADMINISTRATOR MENU");
-
-
+    public Scene getAdministratorMenu()
+    {
         //  GRID
 
         GridPane grid = new GridPane();
@@ -69,7 +59,7 @@ public class Administrator_Menu extends Application {
             @Override
             public void handle(ActionEvent event)
             {
-
+                StartingPoint_Main.changeScene("ADD NEW USER TO DATABASE", new addNewUserToDatabase().getAddNewUserToDatabase());
             }
         });
         grid.add(button_NewAccount, 0, 1);
@@ -95,7 +85,7 @@ public class Administrator_Menu extends Application {
             @Override
             public void handle(ActionEvent event)
             {
-
+                StartingPoint_Main.changeScene("DELETE ACCOUNT", new Administrator_DeleteAccount().getAdministratorMenu());
             }
         });
         grid.add( button_Delete, 0, 3);
@@ -108,7 +98,12 @@ public class Administrator_Menu extends Application {
             @Override
             public void handle(ActionEvent event)
             {
-
+                StartingPoint_Main.globalUser = null;
+                try {
+                    StartingPoint_Main.changeScene("LOGIN", new Login().getLoginScene());
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         });
         grid.add(button_Logout, 0, 4);
@@ -116,8 +111,23 @@ public class Administrator_Menu extends Application {
 
 
         Scene scene = new Scene(grid, 1600,900);
-        primaryStage.setScene(scene);
+
         scene.getStylesheets().add(Login.class.getResource("Style.css").toExternalForm());
+
+        return scene;
+    }
+
+
+
+
+    @Override
+    public void start(Stage primaryStage) throws Exception{
+
+
+        primaryStage.setTitle("ADMINISTRATOR MENU");
+
+
+
         primaryStage.show();
 
     }

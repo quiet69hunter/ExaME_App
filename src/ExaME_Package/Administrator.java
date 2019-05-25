@@ -27,6 +27,9 @@ public class Administrator extends User {
     private ArrayList<Integer> studentIDs = new ArrayList<>();
     private ArrayList<Integer> lecturerIDs = new ArrayList<>();
 
+    public Administrator(String name, String surname, String email) {
+        super(name, surname, email);
+    }
 
     public void addNewAccount(User newUser, String accountType)
     {

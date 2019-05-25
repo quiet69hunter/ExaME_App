@@ -151,14 +151,9 @@ addNewUserToDatabase extends Application {
 
                 if(validateEmail(email_T.getText()))
                 {
-                    User newUser = new  User(name_T.getText(), surname_T.getText(), email_T.getText(), password_T.getText());
 
-                    users.add(newUser);
+                    String sgl = "INSERT INTO `user` (`name`, `surname`, `email`, `password`, `access`, `index`) VALUES ('" + name_T.getText() + "', '" + surname_T.getText() + "', '" + email_T.getText() + "', '" + password_T.getText() + "', '" + accountType_T.getText() + "', " + "NULL" + ");";
 
-
-                   // String sgl = "INSERT INTO `uzytkowniki` (`id`, `imie`, `nazwisko`, `email`, `haslo`, `dostep`, `index`) VALUES (1, 'Tomasz', 'Gwizdalla', 'tgwizd@gmail.com', 'admin', 'administrator', NULL)";
-                   String sgl = "INSERT INTO `uzytkowniki` ( `imie`, `nazwisko`, `email`, `haslo`, `dostep`, `index`) VALUES ('" + name_T.getText() + "', '" + surname_T.getText() + "', '" + email_T.getText() + "', '" + password_T.getText() + "', '" + accountType_T.getText() + "', " + "NULL" + ");";
-                    //String sgl = "INSERT INTO  `uzytkowniki` (  `id` ,  `imie` ,  `nazwisko` ,  `email` ,  `haslo` ,  `dostep` ,  `index` ) VALUES ( 5,  'Tomasz',  'Gwizdala',  'tg@gmail.com',  'haslo',  'administrator', NULL );";
                     DataBaseManager dataBaseManager = null;
                     try {
                         dataBaseManager = new DataBaseManager();
@@ -170,7 +165,7 @@ addNewUserToDatabase extends Application {
 
 
 
-                    String sgl2 = "SELECT * FROM `uzytkowniki`";
+                    String sgl2 = "SELECT * FROM `user`";
                     dataBaseManager.sendQuery_GET(sgl2);    //  To potem usunac
                     for( Map<String, Object> temp : dataBaseManager.resultList) {
                         System.out.println(temp.values());
@@ -188,10 +183,13 @@ addNewUserToDatabase extends Application {
                     password_T.setText("");
                     accountType_T.setText("");
 
+                    Toast.makeToast("NEW USER WAS ADDED TO THE DATABASE");
+
                 }
                 else
                 {
                     System.out.println("Podano nie poprawny email! :-(");
+                    Toast.makeToast("EMAIL IS INCORRECT!");
                 }
 
 
@@ -203,8 +201,22 @@ addNewUserToDatabase extends Application {
         //  END BUTTON
 
 
+        Button button_GoBack = new Button();
+        button_GoBack .setText("GO BACK");
+        button_GoBack .setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event)
+            {
+                StartingPoint_Main.changeScene("ADMINISTRATOR MENU", new Administrator_Menu().getAdministratorMenu());
+            }
+        });
+        grid.add( button_GoBack, 0, 11);
+        //  END BUTTON
+
+
 
         Scene scene = new Scene(grid, 1600,900);
+        scene.getStylesheets().add(Login.class.getResource("Style.css").toExternalForm());
 
         return scene;
     }

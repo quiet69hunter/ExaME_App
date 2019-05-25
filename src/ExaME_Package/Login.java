@@ -16,6 +16,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -51,29 +52,28 @@ LIST OF THING TO IMPROVE/ADD
 public class Login extends Application {
 
 
+    public Scene scene = null;
 
     //  validateData() sprawdza czy podany zestaw danych jest zgodny z tym
     //  co jest w bazie danych.
     // Jesli takie element istenieje - zwraca true
     //  jeśli nie - zwraca false
 
-    public Boolean validateData(String email, String password)
-    {
-        if(true)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+    public Boolean validateData(String email, String password) throws ClassNotFoundException, SQLException {
+
+
+        String sql = "SELECT EXISTS(SELECT *FROM user WHERE email = '" + email + "' AND password = '" + password + "');";
+        DataBaseManager dataBaseManager = new DataBaseManager();
+        Boolean userExistsInDatabase = dataBaseManager.sendQuery_GET_BOOLEAN(sql);
+
+      return userExistsInDatabase;
 
     }
 
 
 
 
-    public Scene getLoginScene()
+    public Scene getLoginScene() throws SQLException
     {
 
 
@@ -134,21 +134,65 @@ public class Login extends Application {
 
                 //  Wykonuje operacje jeżeli podany email jest prawidłowy
 
-                if(validateData(email_T.getText(),password_T.getText()))
-                {
+                try {
+                    if(validateData(email_T.getText(),password_T.getText()))
+                    {
 
-                    System.out.println("Udalo sie zalogowac!");
+                        Toast.makeToast("YOU LOGGED IN");
+
+
+                        DataBaseManager dataBaseManager = new DataBaseManager();
+                        String sql = "SELECT *FROM user WHERE user.email='" + email_T.getText() + "';";
+                        dataBaseManager.sendQuery_GET(sql);
+                        dataBaseManager.printResultList();
 
 
 
 
-                    email_T.setText("");
-                    password_T.setText("");
+                        String accountType = (String)dataBaseManager.resultList.get(0).get("access");
 
-                }
-                else
-                {
-                    System.out.println("Podano nie poprawne dane! :-(");
+                        String name = (String)dataBaseManager.resultList.get(0).get("name");
+                        String surname = (String)dataBaseManager.resultList.get(0).get("surname");
+                        String email = (String)dataBaseManager.resultList.get(0).get("email");
+
+
+
+                        email_T.setText("");
+                        password_T.setText("");
+
+
+                        switch (accountType)
+                        {
+                            case "student":
+                                System.out.println("Tworze konto studenta.");
+                                StartingPoint_Main.globalUser = new Student(name,surname,email);
+                                StartingPoint_Main.changeScene("STUDENT MENU", new Student_Menu().getStudent_Menu());
+                                break;
+                            case "lecturer":
+                                System.out.println("Tworze konto wykladowcy.");
+                                StartingPoint_Main.globalUser = new Lecturer(name,surname,email);
+                                StartingPoint_Main.changeScene("LECTURER MENU", new Lecturer_Menu().getLecturerMenu());
+                                break;
+                            case "administrator":
+                                System.out.println("Tworze konto admina.");
+                                StartingPoint_Main.globalUser = new Administrator(name,surname,email);
+                                StartingPoint_Main.changeScene("ADMINISTRATOR MENU", new Administrator_Menu().getAdministratorMenu());
+                                break;
+
+                        }
+
+
+
+                    }
+                    else
+                    {
+                        System.out.println("Podano nie poprawne dane! :-(");
+                        Toast.makeToast("INCORRECT EMAIL OR PASSWORD");
+                    }
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                } catch (SQLException e) {
+                    e.printStackTrace();
                 }
 
 
@@ -161,7 +205,8 @@ public class Login extends Application {
 
 
 
-        Scene scene = new Scene(grid, 1600,900);
+        scene = new Scene(grid, 1600,900);
+        scene.getStylesheets().add(Login.class.getResource("Style.css").toExternalForm());
 
         return scene;
     }
@@ -177,6 +222,11 @@ public class Login extends Application {
         scene.getStylesheets().add(Login.class.getResource("Style.css").toExternalForm());
         primaryStage.setTitle("Login");
         primaryStage.show();
+
+
+
+
+
     }
 
 

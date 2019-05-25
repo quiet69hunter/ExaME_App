@@ -25,7 +25,13 @@ public class Student extends User {
 
 
     private ArrayList<Integer> testIDs = new ArrayList<>();
-    private String indexNumber;
+
+
+    public Student(String name, String surname, String email) {
+        super(name, surname, email);
+    }
+
+
 
 
     public Boolean startTest (Integer testID)
