@@ -41,6 +41,14 @@ public class DataBaseManager {
     //  aby dostac sie do tych rzeczy należy podać mapie, tak jak bazie danych, np. "id" to zwroci, np 5.
 
 
+
+    public void printResultList()
+    {
+        for( Map<String, Object> temp : resultList) {
+            System.out.println(temp.values());
+        }
+    }
+
     public void sendQuery_GET(String sqlQuery)
     {
         resultList.clear();
@@ -107,9 +115,7 @@ public class DataBaseManager {
         o.sendQuery_GET(sqlQuery);
 
 
-        for( Map<String, Object> temp : o.resultList) {
-            System.out.println(temp.values());
-        }
+        o.printResultList();
 
         System.out.println(o.resultList.get(0).get("nazwa"));
 
