@@ -45,15 +45,7 @@ LIST OF THING TO IMPROVE/ADD
 public class Student_Menu extends Application {
 
 
-
-
-
-    @Override
-    public void start(Stage primaryStage) throws Exception{
-
-
-        primaryStage.setTitle("STUDENT MENU");
-
+    public Scene getStudent_Menu() {
 
         //  GRID
 
@@ -109,8 +101,21 @@ public class Student_Menu extends Application {
 
 
         Scene scene = new Scene(grid, 1600,900);
-        primaryStage.setScene(scene);
         scene.getStylesheets().add(Login.class.getResource("Style.css").toExternalForm());
+
+        return scene;
+    }
+
+
+    @Override
+    public void start(Stage primaryStage) throws Exception{
+
+
+        primaryStage.setTitle("STUDENT MENU");
+
+
+
+        primaryStage.setScene(getStudent_Menu());
         primaryStage.show();
 
     }

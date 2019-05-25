@@ -24,11 +24,20 @@ int fadeOutTime= 500; //0.5 seconds
 Toast.makeText(primarystage, toastMsg, toastMsgTime, fadeInTime, fadeOutTime);
 
 
+ Toast.makeText(StartingPoint_Main.globalPrimaryStage, "Udało się zalogować", 3000, 500, 500);
+
+
  */
 
 public final class Toast
 {
-    public static void makeText(Stage ownerStage, String toastMsg, int toastDelay, int fadeInDelay, int fadeOutDelay)
+
+    public static void makeToast(String message)
+    {
+        Toast.makeText(StartingPoint_Main.globalPrimaryStage, message, 3000, 500, 500);
+    }
+
+    private static void makeText(Stage ownerStage, String toastMsg, int toastDelay, int fadeInDelay, int fadeOutDelay)
     {
         Stage toastStage=new Stage();
         toastStage.initOwner(ownerStage);
@@ -37,10 +46,11 @@ public final class Toast
 
         Text text = new Text(toastMsg);
         text.setFont(Font.font("Verdana", 40));
-        text.setFill(Color.WHITE);
+        text.setFill(Color.rgb(153, 46, 46));
+
 
         StackPane root = new StackPane(text);
-        root.setStyle("-fx-background-radius: 20; -fx-background-color: rgba(0, 250, 0, 0.2); -fx-padding: 50px;");
+        root.setStyle("-fx-background-radius: 20; -fx-background-color: rgba(255, 255, 255, 0.2); -fx-padding: 50px;");
         root.setOpacity(0);
 
         Scene scene = new Scene(root);

@@ -16,6 +16,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -58,32 +59,21 @@ public class Login extends Application {
     // Jesli takie element istenieje - zwraca true
     //  jeśli nie - zwraca false
 
-    public Boolean validateData(String email, String password) throws ClassNotFoundException {
+    public Boolean validateData(String email, String password) throws ClassNotFoundException, SQLException {
 
-        Boolean answerFromServer = false;
+
         String sql = "SELECT EXISTS(SELECT *FROM user WHERE email = '" + email + "' AND password = '" + password + "');";
         DataBaseManager dataBaseManager = new DataBaseManager();
-        dataBaseManager.sendQuery_GET(sql);
-        dataBaseManager.printResultList();
+        Boolean userExistsInDatabase = dataBaseManager.sendQuery_GET_BOOLEAN(sql);
 
-
-        System.out.println(dataBaseManager.resultList.get(0));
-
-        if(answerFromServer)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+      return userExistsInDatabase;
 
     }
 
 
 
 
-    public Scene getLoginScene()
+    public Scene getLoginScene() throws SQLException
     {
 
 
@@ -148,6 +138,7 @@ public class Login extends Application {
                     if(validateData(email_T.getText(),password_T.getText()))
                     {
 
+                        Toast.makeToast("YOU LOGGED IN");
                         System.out.println("Udalo sie zalogowac!");
 
 
@@ -156,19 +147,21 @@ public class Login extends Application {
                         email_T.setText("");
                         password_T.setText("");
 
-                        scene = new addQuestion().getAddQuestion(); //  tu ustawic scene
-                        StartingPoint_Main.globalPrimaryStage.setScene(scene);
-                        StartingPoint_Main.globalScene.getStylesheets().add(addQuestion.class.getResource("Style.css").toExternalForm());
-                        StartingPoint_Main.globalPrimaryStage.setTitle("Add Question");
-                        StartingPoint_Main.globalPrimaryStage.show();
+
+
+                        StartingPoint_Main.changeScene("Add Question", new addNewUserToDatabase().getAddNewUserToDatabase());
+
 
 
                     }
                     else
                     {
                         System.out.println("Podano nie poprawne dane! :-(");
+                        Toast.makeToast("INCORRECT EMAIL OR PASSWORD");
                     }
                 } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                } catch (SQLException e) {
                     e.printStackTrace();
                 }
 
@@ -183,6 +176,7 @@ public class Login extends Application {
 
 
         scene = new Scene(grid, 1600,900);
+        scene.getStylesheets().add(Login.class.getResource("Style.css").toExternalForm());
 
         return scene;
     }

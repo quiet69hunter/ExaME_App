@@ -156,8 +156,8 @@ addNewUserToDatabase extends Application {
                     users.add(newUser);
 
 
-                   // String sgl = "INSERT INTO `uzytkowniki` (`id`, `imie`, `nazwisko`, `email`, `haslo`, `dostep`, `index`) VALUES (1, 'Tomasz', 'Gwizdalla', 'tgwizd@gmail.com', 'admin', 'administrator', NULL);";
-                    String sgl = "INSERT INTO `uzytkowniki` (`id`, `imie`, `nazwisko`, `email`, `haslo`, `dostep`, `index`) VALUES (1, '" + name_T.getText() + "', '" + surname_T.getText() + "', '" + email_T.getText() + "', '" + password_T.getText() + "', '" + accountType_T.getText() + "', " + "NULL" + ");";
+
+                    String sgl = "INSERT INTO `user` (`name`, `surname`, `email`, `password`, `access`, `index`) VALUES ('" + name_T.getText() + "', '" + surname_T.getText() + "', '" + email_T.getText() + "', '" + password_T.getText() + "', '" + accountType_T.getText() + "', " + "NULL" + ");";
 
                     DataBaseManager dataBaseManager = null;
                     try {
@@ -188,10 +188,13 @@ addNewUserToDatabase extends Application {
                     password_T.setText("");
                     accountType_T.setText("");
 
+                    Toast.makeToast("NEW USER WAS ADDED TO THE DATABASE");
+
                 }
                 else
                 {
                     System.out.println("Podano nie poprawny email! :-(");
+                    Toast.makeToast("EMAIL IS INCORRECT!");
                 }
 
 
@@ -205,6 +208,7 @@ addNewUserToDatabase extends Application {
 
 
         Scene scene = new Scene(grid, 1600,900);
+        scene.getStylesheets().add(Login.class.getResource("Style.css").toExternalForm());
 
         return scene;
     }

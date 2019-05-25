@@ -219,6 +219,7 @@ public class addQuestion extends Application {
 
 
         Scene scene = new Scene(grid, 1600,900);
+        scene.getStylesheets().add(Login.class.getResource("Style.css").toExternalForm());
 
         return scene;
     }
@@ -237,7 +238,6 @@ public class addQuestion extends Application {
 
         Scene scene = new addQuestion().getAddQuestion();
         primaryStage.setScene(scene);
-        scene.getStylesheets().add(Login.class.getResource("Style.css").toExternalForm());
         primaryStage.setTitle("ADD QUESTION");
         primaryStage.show();
 

@@ -80,7 +80,44 @@ public class DataBaseManager {
 
 
 
-    public void sendQuery_SET(String sqlQuery)
+
+    public Boolean sendQuery_GET_BOOLEAN(String sqlQuery) throws SQLException {
+
+        resultList.clear();
+
+
+        //  blok try-wth-resources
+        try (
+                Connection connection = getConnection(URL, UserName, Password);
+                Statement statement = connection.createStatement();
+                ResultSet resultSet = statement.executeQuery(sqlQuery)
+        ) {
+
+            ResultSetMetaData metaData = resultSet.getMetaData();
+            Integer columnCount = metaData.getColumnCount();
+
+
+            Long returnedValue = 1l;
+
+
+            resultSet.next();
+            returnedValue = (Long) resultSet.getObject(1);
+
+            if(returnedValue == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+    }
+
+
+
+        public void sendQuery_SET(String sqlQuery)
     {
         resultList.clear();
 
