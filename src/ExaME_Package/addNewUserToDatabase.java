@@ -165,7 +165,7 @@ addNewUserToDatabase extends Application {
 
 
 
-                    String sgl2 = "SELECT * FROM `uzytkowniki`";
+                    String sgl2 = "SELECT * FROM `user`";
                     dataBaseManager.sendQuery_GET(sgl2);    //  To potem usunac
                     for( Map<String, Object> temp : dataBaseManager.resultList) {
                         System.out.println(temp.values());

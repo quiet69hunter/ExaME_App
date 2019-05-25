@@ -16,6 +16,8 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.sql.SQLException;
+
 
 
 
@@ -92,7 +94,12 @@ public class Student_Menu extends Application {
             @Override
             public void handle(ActionEvent event)
             {
-
+                StartingPoint_Main.globalUser = null;
+                try {
+                    StartingPoint_Main.changeScene("LOGIN", new Login().getLoginScene());
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         });
         grid.add(button_Logout, 0, 3);

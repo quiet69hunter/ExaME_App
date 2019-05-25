@@ -13,6 +13,8 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.sql.SQLException;
+
 
 
 
@@ -43,15 +45,8 @@ public class Lecturer_Menu extends Application {
 
 
 
-
-
-    @Override
-    public void start(Stage primaryStage) throws Exception{
-
-
-        primaryStage.setTitle("LECTURER MENU");
-
-
+    public Scene getLecturerMenu()
+    {
         //  GRID
 
         GridPane grid = new GridPane();
@@ -120,7 +115,12 @@ public class Lecturer_Menu extends Application {
             @Override
             public void handle(ActionEvent event)
             {
-
+                StartingPoint_Main.globalUser = null;
+                try {
+                    StartingPoint_Main.changeScene("LOGIN", new Login().getLoginScene());
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         });
         grid.add(button_Logout, 0, 5);
@@ -128,8 +128,19 @@ public class Lecturer_Menu extends Application {
 
 
         Scene scene = new Scene(grid, 1600,900);
-        primaryStage.setScene(scene);
         scene.getStylesheets().add(Login.class.getResource("Style.css").toExternalForm());
+
+        return scene;
+    }
+
+
+    @Override
+    public void start(Stage primaryStage) throws Exception{
+
+
+        primaryStage.setTitle("LECTURER MENU");
+
+
         primaryStage.show();
 
     }
