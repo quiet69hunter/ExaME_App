@@ -85,7 +85,7 @@ public class Administrator_Menu extends Application {
             @Override
             public void handle(ActionEvent event)
             {
-
+                StartingPoint_Main.changeScene("DELETE ACCOUNT", new Administrator_DeleteAccount().getAdministratorMenu());
             }
         });
         grid.add( button_Delete, 0, 3);
