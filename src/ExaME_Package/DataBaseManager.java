@@ -30,6 +30,12 @@ public class DataBaseManager {
     }
 
 
+    public void printResultList()
+    {
+        for( Map<String, Object> temp : resultList) {
+            System.out.println(temp.values());
+        }
+    }
 
 
 

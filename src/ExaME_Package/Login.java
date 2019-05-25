@@ -58,9 +58,18 @@ public class Login extends Application {
     // Jesli takie element istenieje - zwraca true
     //  jeśli nie - zwraca false
 
-    public Boolean validateData(String email, String password)
-    {
-        if(true)
+    public Boolean validateData(String email, String password) throws ClassNotFoundException {
+
+        Boolean answerFromServer = false;
+        String sql = "SELECT EXISTS(SELECT *FROM user WHERE email = '" + email + "' AND password = '" + password + "');";
+        DataBaseManager dataBaseManager = new DataBaseManager();
+        dataBaseManager.sendQuery_GET(sql);
+        dataBaseManager.printResultList();
+
+
+        System.out.println(dataBaseManager.resultList.get(0));
+
+        if(answerFromServer)
         {
             return true;
         }
@@ -135,28 +144,32 @@ public class Login extends Application {
 
                 //  Wykonuje operacje jeżeli podany email jest prawidłowy
 
-                if(validateData(email_T.getText(),password_T.getText()))
-                {
+                try {
+                    if(validateData(email_T.getText(),password_T.getText()))
+                    {
 
-                    System.out.println("Udalo sie zalogowac!");
-
-
-
-
-                    email_T.setText("");
-                    password_T.setText("");
-
-                    scene = new addQuestion().getAddQuestion(); //  tu ustawic scene
-                    StartingPoint_Main.globalPrimaryStage.setScene(scene);
-                    StartingPoint_Main.globalScene.getStylesheets().add(addQuestion.class.getResource("Style.css").toExternalForm());
-                    StartingPoint_Main.globalPrimaryStage.setTitle("Add Question");
-                    StartingPoint_Main.globalPrimaryStage.show();
+                        System.out.println("Udalo sie zalogowac!");
 
 
-                }
-                else
-                {
-                    System.out.println("Podano nie poprawne dane! :-(");
+
+
+                        email_T.setText("");
+                        password_T.setText("");
+
+                        scene = new addQuestion().getAddQuestion(); //  tu ustawic scene
+                        StartingPoint_Main.globalPrimaryStage.setScene(scene);
+                        StartingPoint_Main.globalScene.getStylesheets().add(addQuestion.class.getResource("Style.css").toExternalForm());
+                        StartingPoint_Main.globalPrimaryStage.setTitle("Add Question");
+                        StartingPoint_Main.globalPrimaryStage.show();
+
+
+                    }
+                    else
+                    {
+                        System.out.println("Podano nie poprawne dane! :-(");
+                    }
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
                 }
 
 
@@ -185,6 +198,11 @@ public class Login extends Application {
         scene.getStylesheets().add(Login.class.getResource("Style.css").toExternalForm());
         primaryStage.setTitle("Login");
         primaryStage.show();
+
+
+
+
+
     }
 
 
