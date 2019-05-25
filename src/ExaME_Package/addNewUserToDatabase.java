@@ -201,6 +201,19 @@ addNewUserToDatabase extends Application {
         //  END BUTTON
 
 
+        Button button_GoBack = new Button();
+        button_GoBack .setText("GO BACK");
+        button_GoBack .setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event)
+            {
+                StartingPoint_Main.changeScene("ADMINISTRATOR MENU", new Administrator_Menu().getAdministratorMenu());
+            }
+        });
+        grid.add( button_GoBack, 0, 11);
+        //  END BUTTON
+
+
 
         Scene scene = new Scene(grid, 1600,900);
         scene.getStylesheets().add(Login.class.getResource("Style.css").toExternalForm());

@@ -185,6 +185,24 @@ public class addQuestion extends Application {
                 }
 
 
+                DataBaseManager dataBaseManager = null;
+                try {
+                    dataBaseManager = new DataBaseManager();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+
+                //  question content
+                String sql = "INSERT INTO `question` (`idTest`, `questionContent`) VALUES (1, '"+ questionContent_T.getText() +"');";
+                dataBaseManager.sendQuery_SET(sql);
+
+                // dodać lambdę tutaj
+                // answer a
+                sql = "INSERT INTO `answer`(`idQuestion`, `answerContent`, `answerIsCorrect`, `pointOfAnswer`, `ABCD`) VALUES (1,'" + answerA_T + "',"  +"," + ",'A');";
+                dataBaseManager.sendQuery_SET(sql);
+
+
+
                 Question q = new Question(questionNum, questionContent_T.getText(), answers, correctAnswer, pointsForCorrectAnswer, pointsForWrongAnswer);
                 questions.add(q);
 

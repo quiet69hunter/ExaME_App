@@ -64,7 +64,7 @@ public class Lecturer_Menu extends Application {
             @Override
             public void handle(ActionEvent event)
             {
-
+                StartingPoint_Main.changeScene("MAKE NEW TEST", new Lecturer_Make_New_Test().getLecturerMAekeNewTest());
             }
         });
         grid.add(button_MakeNewTest, 0, 1);
