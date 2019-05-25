@@ -3,6 +3,7 @@ package ExaME_Package;
 import javafx.application.Application;
 
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 /*
 Klasa reprezentująca pojedynczy test
@@ -18,42 +19,34 @@ UPDATES
 
 LIST OF THING TO IMPROVE/ADD
 
-* Uzupełnić ciała metod
 
  */
 
 
 public class Test  {
 
-    private Integer testID;
-    private ArrayList<Question> questions;
+    //private Integer testID;
+    //private ArrayList<Question> questions;
     private Float testTime;
-    private Integer Key;
-    private Integer MaxPoints;
+    private long Key;
     private String title;
+    private Integer questionAmount;
+    private String nameOfSubject;
 
-    public Test(Integer testID, ArrayList<Question> questions, Float testTime, Integer Key, Integer MaxPointsString,String title)
+    public Test( String title,  String nameOfSubject, Integer questionAmount, Float testTime)
     {
-        this.testID=testID;
-        this.questions=questions; //zastanowic sie
-        this.testTime=testTime;
-        this.Key=Key;
-        this.MaxPoints=MaxPoints;
         this.title=title;
+        this.nameOfSubject=nameOfSubject;
+        this.questionAmount=questionAmount;
+        this.testTime=testTime;
+        this.Key=System.currentTimeMillis()/1000;
     }
 
-    public void generateNewKey(Integer testID)
+    public void generateNewKey(Integer Key)
     {
-        this.testID=testID;
+        this.Key=Key;
     }
 
-    public Integer getTestID() {
-        return testID;
-    }
-
-    public void setTestID(Integer testID) {
-        this.testID = testID;
-    }
 
     public Float getTestTime() {
         return testTime;
@@ -63,19 +56,19 @@ public class Test  {
         this.testTime = testTime;
     }
 
-    public Integer getMaxPoints() {
-        return MaxPoints;
-    }
-
-    public void setMaxPoints(Integer maxPoints) {
-        MaxPoints = maxPoints;
-    }
-
     public String getTitle() {
         return title;
     }
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public long getKey() {
+        return Key;
+    }
+
+    public void setKey(long key) {
+        Key = key;
     }
 }

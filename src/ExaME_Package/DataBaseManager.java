@@ -30,15 +30,6 @@ public class DataBaseManager {
     }
 
 
-    public void printResultList()
-    {
-        for( Map<String, Object> temp : resultList) {
-            System.out.println(temp.values());
-        }
-    }
-
-
-
 
     //  do wysyłania zapyrań do bazy używamy metody sendQuery(), ktora przyjmuje
     //  zapytanie w formie stringa
