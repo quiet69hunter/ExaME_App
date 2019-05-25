@@ -28,7 +28,9 @@ public class Lecturer extends User {
     private ArrayList<Integer> testIDs = new ArrayList<>();
     private ArrayList<Integer> studentIDs = new ArrayList<>();
 
-
+    public Lecturer(String name, String surname, String email) {
+        super(name, surname, email);
+    }
 
     public Boolean startMakingTest(Integer testID)
     {

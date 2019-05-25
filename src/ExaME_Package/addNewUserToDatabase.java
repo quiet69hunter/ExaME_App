@@ -151,11 +151,6 @@ addNewUserToDatabase extends Application {
 
                 if(validateEmail(email_T.getText()))
                 {
-                    User newUser = new  User(name_T.getText(), surname_T.getText(), email_T.getText(), password_T.getText());
-
-                    users.add(newUser);
-
-
 
                     String sgl = "INSERT INTO `user` (`name`, `surname`, `email`, `password`, `access`, `index`) VALUES ('" + name_T.getText() + "', '" + surname_T.getText() + "', '" + email_T.getText() + "', '" + password_T.getText() + "', '" + accountType_T.getText() + "', " + "NULL" + ");";
 

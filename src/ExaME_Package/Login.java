@@ -142,6 +142,38 @@ public class Login extends Application {
                         System.out.println("Udalo sie zalogowac!");
 
 
+                        DataBaseManager dataBaseManager = new DataBaseManager();
+                        String sql = "SELECT *FROM user WHERE user.email='" + email_T.getText() + "';";
+                        dataBaseManager.sendQuery_GET(sql);
+                        dataBaseManager.printResultList();
+
+
+                        String accountType = (String)dataBaseManager.resultList.get(0).get("access");
+
+                        String name = (String)dataBaseManager.resultList.get(0).get("name");
+                        String surname = (String)dataBaseManager.resultList.get(0).get("surname");
+                        String email = (String)dataBaseManager.resultList.get(0).get("email");
+
+
+
+                        switch (accountType)
+                        {
+                            case "student":
+                                System.out.println("Tworze konto studenta.");
+                                StartingPoint_Main.globalUser = new Student(name,surname,email);
+                                break;
+                            case "lecturer":
+                                System.out.println("Tworze konto wykladowcy.");
+                                StartingPoint_Main.globalUser = new Lecturer(name,surname,email);
+                                break;
+                            case "administrator":
+                                System.out.println("Tworze konto admina.");
+                                StartingPoint_Main.globalUser = new Administrator(name,surname,email);
+                                break;
+
+                        }
+
+
 
 
                         email_T.setText("");

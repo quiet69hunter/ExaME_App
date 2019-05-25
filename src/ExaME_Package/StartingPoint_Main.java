@@ -10,6 +10,8 @@ import java.util.concurrent.TimeUnit;
 public class StartingPoint_Main extends Application {
 
 
+
+    public static User globalUser;
    public static Scene globalScene = null;
    public static Stage globalPrimaryStage = null;
 
