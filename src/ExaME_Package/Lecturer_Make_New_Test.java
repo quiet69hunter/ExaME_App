@@ -10,7 +10,19 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 
 import java.sql.SQLException;
+/*
 
+
+
+UPDATES
+
+26.05.2019 - Kopera - poprawki w połaczeniu z bazą
+
+
+LIST OF THING TO IMPROVE/ADD
+
+
+ */
 public class Lecturer_Make_New_Test {
 
     private  Integer generateAccessKey()
@@ -76,8 +88,11 @@ public class Lecturer_Make_New_Test {
                         Integer timeLimit = Integer.parseInt(timeLimit_T.getText());
                         Integer numOfQ = Integer.parseInt(numberOfQuestions_T.getText());
 
+                        Test t = new Test(title_T.getText(),subjectName_T.getText(),numOfQ,timeLimit);
+
                         DataBaseManager dataBaseManager = new DataBaseManager();
-                        String sql = "INSERT INTO `test`(`testTitle`, `subject`, `testQuestionsAmount`, `timeLimit`, `accessKey`) VALUES ('" + title_T.getText() + "','" + subjectName_T.getText() + "'," + numOfQ + "," + timeLimit + "," + generateAccessKey().toString() + ");";
+                        String sql = "INSERT INTO `test`( `testTitle`,`testQuestionsAmount`, `timeLimit`, `accessKey`, `subject`, `idLecturer`) VALUES ('" + title_T.getText() + "','" + numOfQ + "', '" + timeLimit + "','"+t.getKey()+"','" + subjectName_T.getText() + "',1);";
+
                         dataBaseManager.sendQuery_SET(sql);
 
                         StartingPoint_Main.changeScene("ADD QUESTION", new addQuestion().getAddQuestion());

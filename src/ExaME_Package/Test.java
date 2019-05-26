@@ -27,13 +27,13 @@ public class Test  {
 
     //private Integer testID;
     //private ArrayList<Question> questions;
-    private Float testTime;
+    private Integer testTime;
     private long Key;
     private String title;
     private Integer questionAmount;
     private String nameOfSubject;
 
-    public Test( String title,  String nameOfSubject, Integer questionAmount, Float testTime)
+    public Test( String title,  String nameOfSubject, Integer questionAmount, Integer testTime)
     {
         this.title=title;
         this.nameOfSubject=nameOfSubject;
@@ -48,11 +48,11 @@ public class Test  {
     }
 
 
-    public Float getTestTime() {
+    public Integer getTestTime() {
         return testTime;
     }
 
-    public void setTestTime(Float testTime) {
+    public void setTestTime(Integer testTime) {
         this.testTime = testTime;
     }
 

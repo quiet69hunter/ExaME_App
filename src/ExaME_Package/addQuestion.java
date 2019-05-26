@@ -161,6 +161,12 @@ public class addQuestion extends Application {
                 Integer questionNum = 1;
                 Integer correctAnswer = 1;
 
+                Integer correctA=0;
+                Integer correctB=0;
+                Integer correctC=0;
+                Integer correctD=0;
+
+
 
 
                 //  Tak wyglada konstruktor Question:
@@ -172,8 +178,8 @@ public class addQuestion extends Application {
                 answers.add(answerC_T.getText());
                 answers.add(answerD_T.getText());
 
-                Integer pointsForCorrectAnswer = 1;
-                Integer pointsForWrongAnswer = 1;
+                Integer pointsForCorrectAnswer = 0;
+                Integer pointsForWrongAnswer = 0;
 
                 if(!correctAnswer_T.getText().toString().isEmpty())
                 {
@@ -182,6 +188,33 @@ public class addQuestion extends Application {
                 if(!wrongAnswer_T.getText().toString().isEmpty())
                 {
                     pointsForWrongAnswer = Integer.parseInt(wrongAnswer_T.getText());
+                }
+
+                Integer pointsA=pointsForWrongAnswer;
+                Integer pointsB=pointsForWrongAnswer;
+                Integer pointsC=pointsForWrongAnswer;
+                Integer pointsD=pointsForWrongAnswer;
+
+                //przypisywanie prawidłowej odpowiedzi
+                if( indexOFCorrectAnswer_T.getText().equals("a") ||  indexOFCorrectAnswer_T.getText().equals("A"))
+                {
+                     correctA=1;
+                    pointsA=pointsForCorrectAnswer;
+                }
+                else  if(  indexOFCorrectAnswer_T.getText().equals("b") ||  indexOFCorrectAnswer_T.getText().equals("B"))
+                {
+                    correctB=1;
+                    pointsB=pointsForCorrectAnswer;
+                }
+                else  if(  indexOFCorrectAnswer_T.getText().equals("c") ||  indexOFCorrectAnswer_T.getText().equals("C"))
+                {
+                    correctC=1;
+                    pointsC=pointsForCorrectAnswer;
+                }
+                else  if( indexOFCorrectAnswer_T.getText().equals("d") ||  indexOFCorrectAnswer_T.getText().equals("D"))
+                {
+                    correctD=1;
+                    pointsD=pointsForCorrectAnswer;
                 }
 
 
@@ -197,10 +230,19 @@ public class addQuestion extends Application {
                 dataBaseManager.sendQuery_SET(sql);
 
                 // dodać lambdę tutaj
-                // answer a
-                sql = "INSERT INTO `answer`(`idQuestion`, `answerContent`, `answerIsCorrect`, `pointOfAnswer`, `ABCD`) VALUES (1,'" + answerA_T + "',"  +"," + ",'A');";
+
+                //poprawic id testu
+                sql = "INSERT INTO `answer`(`idQuestion`, `answerContent`, `answerIsCorrect`, `pointOfAnswer`, `ABCD`) VALUES (1,'" + answerA_T.getText() + "','"+correctA+"','"+pointsA+"','A');";
                 dataBaseManager.sendQuery_SET(sql);
 
+                sql = "INSERT INTO `answer`(`idQuestion`, `answerContent`, `answerIsCorrect`, `pointOfAnswer`, `ABCD`) VALUES (1,'" + answerB_T.getText() + "','"+correctB+"','"+pointsB+"','B');";
+                dataBaseManager.sendQuery_SET(sql);
+
+                sql = "INSERT INTO `answer`(`idQuestion`, `answerContent`, `answerIsCorrect`, `pointOfAnswer`, `ABCD`) VALUES (1,'" + answerC_T.getText() + "','"+correctC+"','"+pointsC+"','C');";
+                dataBaseManager.sendQuery_SET(sql);
+
+                sql = "INSERT INTO `answer`(`idQuestion`, `answerContent`, `answerIsCorrect`, `pointOfAnswer`, `ABCD`) VALUES (1,'" + answerD_T.getText() + "','"+correctD+"','"+pointsD+"','D');";
+                dataBaseManager.sendQuery_SET(sql);
 
 
                 Question q = new Question(questionNum, questionContent_T.getText(), answers, correctAnswer, pointsForCorrectAnswer, pointsForWrongAnswer);
@@ -218,9 +260,7 @@ public class addQuestion extends Application {
 
                 correctAnswer_T.setText("");
                 wrongAnswer_T.setText("");
-
-
-
+                indexOFCorrectAnswer_T.setText("");
 
 
 
