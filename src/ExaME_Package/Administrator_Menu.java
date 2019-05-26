@@ -17,7 +17,7 @@ import java.sql.SQLException;
 
 
 /*
-Plik ze GUI menu studenta ( Student Module )
+Plik z GUI menu studenta ( Student Module )
 
 
 

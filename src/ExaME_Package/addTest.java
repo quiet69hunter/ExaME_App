@@ -85,8 +85,8 @@ public class addTest extends Application {
                 Integer questionAmount_I=0;
 
 
-                Float time_F =null;
-                time_F.parseFloat(time_S);
+                Integer time_I =null;
+                time_I.parseInt(time_S);
 
 
 
@@ -104,9 +104,9 @@ public class addTest extends Application {
                    {
 
 
-                       Test t = new Test(title_S,subject_S,questionAmount_I,time_F);
+                       Test t = new Test(title_S,subject_S,questionAmount_I,time_I);
                        //id wykladowcy jakos pobrac trzeba!!!
-                       String sql = "INSERT INTO `test`( `testTitle`,`testQuestionsAmount`, `timeLimit`, `accessKey`, `subject`, `idLecturer`) VALUES ('" + title_T.getText() + "', '" + time_T.getText() + "','" + questionAmount_T.getText() + "','"+t.getKey()+"','" + subject_T.getText() + "',1);";
+                       String sql = "INSERT INTO `test`( `testTitle`,`testQuestionsAmount`, `timeLimit`, `accessKey`, `subject`, `idLecturer`) VALUES ('" + title_T.getText() + "','" + questionAmount_T.getText() + "', '" + time_T.getText() + "','"+t.getKey()+"','" + subject_T.getText() + "',1);";
 
                        DataBaseManager dataBaseManager = null;
                        try {
@@ -116,6 +116,8 @@ public class addTest extends Application {
                        }
                        dataBaseManager.sendQuery_SET(sql);
 
+
+                       //wywołać add Question
                    }
                }
 
@@ -151,8 +153,8 @@ public class addTest extends Application {
     }
 
 
-    public static void main(String[] args) {
+   /* public static void main(String[] args) {
         launch(args);
-    }
+    }*/
 }
 
