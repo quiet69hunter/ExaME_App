@@ -25,8 +25,8 @@ LIST OF THING TO IMPROVE/ADD
 public class Administrator extends User {
 
 
-    public Administrator(String name, String surname, String email) {
-        super(name, surname, email);
+    public Administrator(String name, String surname, String email, Integer id) {
+        super(name, surname, email, id);
     }
 
     public void addNewAccount(User newUser, String accountType)
