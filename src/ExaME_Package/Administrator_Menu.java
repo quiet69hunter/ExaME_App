@@ -67,16 +67,20 @@ public class Administrator_Menu extends Application {
 
 
 
-        Button button_ChangeAccountType = new Button();
-        button_ChangeAccountType.setText("CHANGE ACCOUNT TYPE");
-        button_ChangeAccountType.setOnAction(new EventHandler<ActionEvent>() {
+        Button button_ListOfUsers = new Button();
+        button_ListOfUsers.setText("LIST OF USERS");
+        button_ListOfUsers.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event)
             {
-
+                try {
+                    StartingPoint_Main.changeScene("LIST OF USERS", new Administrator_ListOfUsers().getAdministrator_ListOfUsers());
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
             }
         });
-        grid.add( button_ChangeAccountType, 0, 2);
+        grid.add( button_ListOfUsers, 0, 2);
         //  END BUTTON
 
         Button button_Delete = new Button();
