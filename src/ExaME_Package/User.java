@@ -27,6 +27,7 @@ public class User {
     protected String Name;
     protected String Surname;
     protected String Email;
+    protected Integer ID;
 
 
     public User()
@@ -34,10 +35,11 @@ public class User {
 
     }
 
-    public User(String name, String surname, String email) {
+    public User(String name, String surname, String email, Integer id) {
         Name = name;
         Surname = surname;
         Email = email;
+        ID = id;
     }
 
     public Boolean Login (String email, String Password)

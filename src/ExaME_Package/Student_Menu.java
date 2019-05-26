@@ -80,7 +80,11 @@ public class Student_Menu extends Application {
             @Override
             public void handle(ActionEvent event)
             {
-
+                try {
+                    StartingPoint_Main.changeScene("SCORES", new Student_View_Scores().getStudent_View_Scores());
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
             }
         });
         grid.add( button_CheckPreviousTestsScores, 0, 2);

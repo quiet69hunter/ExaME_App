@@ -154,6 +154,7 @@ public class Login extends Application {
                         String name = (String)dataBaseManager.resultList.get(0).get("name");
                         String surname = (String)dataBaseManager.resultList.get(0).get("surname");
                         String email = (String)dataBaseManager.resultList.get(0).get("email");
+                        Integer id = (Integer) dataBaseManager.resultList.get(0).get("id");
 
 
 
@@ -165,17 +166,17 @@ public class Login extends Application {
                         {
                             case "student":
                                 System.out.println("Tworze konto studenta.");
-                                StartingPoint_Main.globalUser = new Student(name,surname,email);
+                                StartingPoint_Main.globalUser = new Student(name,surname,email,id);
                                 StartingPoint_Main.changeScene("STUDENT MENU", new Student_Menu().getStudent_Menu());
                                 break;
                             case "lecturer":
                                 System.out.println("Tworze konto wykladowcy.");
-                                StartingPoint_Main.globalUser = new Lecturer(name,surname,email);
+                                StartingPoint_Main.globalUser = new Lecturer(name,surname,email,id);
                                 StartingPoint_Main.changeScene("LECTURER MENU", new Lecturer_Menu().getLecturerMenu());
                                 break;
                             case "administrator":
                                 System.out.println("Tworze konto admina.");
-                                StartingPoint_Main.globalUser = new Administrator(name,surname,email);
+                                StartingPoint_Main.globalUser = new Administrator(name,surname,email,id);
                                 StartingPoint_Main.changeScene("ADMINISTRATOR MENU", new Administrator_Menu().getAdministratorMenu());
                                 break;
 
