@@ -31,6 +31,12 @@ Button {
     -fx-background-color: #992e2e;
     -fx-padding:10px 20px 10px 20px;
 }
+RadioButton
+{
+    -fx-text-fill: white;
+    -fx-font-family: "Arial";
+    -fx-font-weight: bold;
+}
 TextField {
     -fx-text-fill: white;
     -fx-background-color: #313131;
