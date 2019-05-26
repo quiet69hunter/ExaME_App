@@ -98,6 +98,7 @@ public class addTest extends Application {
 
                    if(questionAmount_I<=0)
                    {
+                       Toast.makeToast("QUESTION AMOUNT CANNOT BE ZERO OR LESS");
                        //zla ilosc pytan
                    }
                    else

@@ -91,7 +91,11 @@ public class Lecturer_Menu extends Application {
             @Override
             public void handle(ActionEvent event)
             {
-
+                try {
+                    StartingPoint_Main.changeScene("VIEW TEST IDS", new Lecturer_ViewTestIDs().getLecturer_ViewTestIDs());
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
             }
         });
         grid.add( button_viewTestIDS, 0, 3);
