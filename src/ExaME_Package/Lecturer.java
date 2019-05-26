@@ -25,8 +25,10 @@ LIST OF THING TO IMPROVE/ADD
 
 public class Lecturer extends User {
 
-    private ArrayList<Integer> testIDs = new ArrayList<>();
-    private ArrayList<Integer> studentIDs = new ArrayList<>();
+
+    public Integer numOfQuestionsInTest = 0;
+    public Integer questionCounter = 1;
+    public String newTestID = "";
 
     public Lecturer(String name, String surname, String email, Integer id) {
         super(name, surname, email, id);

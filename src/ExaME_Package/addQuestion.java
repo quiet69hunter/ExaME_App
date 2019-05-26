@@ -226,22 +226,31 @@ public class addQuestion extends Application {
                 }
 
                 //  question content
-                String sql = "INSERT INTO `question` (`idTest`, `questionContent`) VALUES (1, '"+ questionContent_T.getText() +"');";
+                String sql = "INSERT INTO `question` (`idTest`, `questionContent`) VALUES ("+ ((Lecturer)(StartingPoint_Main.globalUser)).newTestID  + ", '"+ questionContent_T.getText() +"');";
                 dataBaseManager.sendQuery_SET(sql);
+
+
+                sql = "SELECT question.id FROM question WHERE question.questionContent='" + questionContent_T.getText() + "'";
+                dataBaseManager.sendQuery_GET(sql);
+
+                String idQ = dataBaseManager.resultList.get(0).get("id").toString();
+                System.out.println("Id nowego pytania to: " + idQ);
+
+
 
                 // dodać lambdę tutaj
 
                 //poprawic id testu
-                sql = "INSERT INTO `answer`(`idQuestion`, `answerContent`, `answerIsCorrect`, `pointOfAnswer`, `ABCD`) VALUES (1,'" + answerA_T.getText() + "','"+correctA+"','"+pointsA+"','A');";
+                sql = "INSERT INTO `answer`(`idQuestion`, `answerContent`, `answerIsCorrect`, `pointOfAnswer`, `ABCD`) VALUES ("+ idQ + ",'" + answerA_T.getText() + "','"+correctA+"','"+pointsA+"','A');";
                 dataBaseManager.sendQuery_SET(sql);
 
-                sql = "INSERT INTO `answer`(`idQuestion`, `answerContent`, `answerIsCorrect`, `pointOfAnswer`, `ABCD`) VALUES (1,'" + answerB_T.getText() + "','"+correctB+"','"+pointsB+"','B');";
+                sql = "INSERT INTO `answer`(`idQuestion`, `answerContent`, `answerIsCorrect`, `pointOfAnswer`, `ABCD`) VALUES ("+ idQ + ",'" + answerB_T.getText() + "','"+correctB+"','"+pointsB+"','B');";
                 dataBaseManager.sendQuery_SET(sql);
 
-                sql = "INSERT INTO `answer`(`idQuestion`, `answerContent`, `answerIsCorrect`, `pointOfAnswer`, `ABCD`) VALUES (1,'" + answerC_T.getText() + "','"+correctC+"','"+pointsC+"','C');";
+                sql = "INSERT INTO `answer`(`idQuestion`, `answerContent`, `answerIsCorrect`, `pointOfAnswer`, `ABCD`) VALUES ("+ idQ + ",'" + answerC_T.getText() + "','"+correctC+"','"+pointsC+"','C');";
                 dataBaseManager.sendQuery_SET(sql);
 
-                sql = "INSERT INTO `answer`(`idQuestion`, `answerContent`, `answerIsCorrect`, `pointOfAnswer`, `ABCD`) VALUES (1,'" + answerD_T.getText() + "','"+correctD+"','"+pointsD+"','D');";
+                sql = "INSERT INTO `answer`(`idQuestion`, `answerContent`, `answerIsCorrect`, `pointOfAnswer`, `ABCD`) VALUES ("+ idQ + ",'" + answerD_T.getText() + "','"+correctD+"','"+pointsD+"','D');";
                 dataBaseManager.sendQuery_SET(sql);
 
 
@@ -250,6 +259,8 @@ public class addQuestion extends Application {
 
                 viewQuestions();
                 System.out.println();
+
+
 
                 questionContent_T.setText("");
 
@@ -262,6 +273,22 @@ public class addQuestion extends Application {
                 wrongAnswer_T.setText("");
                 indexOFCorrectAnswer_T.setText("");
 
+
+                if(((Lecturer)(StartingPoint_Main.globalUser)).questionCounter < ((Lecturer)(StartingPoint_Main.globalUser)).numOfQuestionsInTest)
+                {
+                    ((Lecturer)(StartingPoint_Main.globalUser)).questionCounter++;
+                    Toast.makeToast("THE QUESTION WAS SUCCESSFULLY ADDED TO THE DATABASE");
+                }
+                else
+                {
+                    ((Lecturer)(StartingPoint_Main.globalUser)).questionCounter = 1;
+                    ((Lecturer)(StartingPoint_Main.globalUser)).numOfQuestionsInTest = 0;
+                    ((Lecturer)(StartingPoint_Main.globalUser)).newTestID = "";
+
+                    Toast.makeToast("YOU ADDED TOTAL AMOUNT OF QUESTIONS TO THIS TEST. \n THE TEST WAS SUCCESSFULLY ADDED TO THE DATABASE");
+
+                    StartingPoint_Main.changeScene("LECTURER MENU", new Lecturer_Menu().getLecturerMenu());
+                }
 
 
 

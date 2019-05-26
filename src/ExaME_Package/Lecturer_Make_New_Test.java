@@ -87,6 +87,7 @@ public class Lecturer_Make_New_Test {
 
                         Integer timeLimit = Integer.parseInt(timeLimit_T.getText());
                         Integer numOfQ = Integer.parseInt(numberOfQuestions_T.getText());
+                        ((Lecturer)(StartingPoint_Main.globalUser)).numOfQuestionsInTest = numOfQ;
 
                         Test t = new Test(title_T.getText(),subjectName_T.getText(),numOfQ,timeLimit);
 
@@ -95,8 +96,15 @@ public class Lecturer_Make_New_Test {
 
                         dataBaseManager.sendQuery_SET(sql);
 
+
+                        sql = "SELECT test.id FROM test WHERE test.testTitle='" + title_T.getText() + "' AND test.accessKey='"+ t.getKey() +"';";
+                        dataBaseManager.sendQuery_GET(sql);
+                        String idT = dataBaseManager.resultList.get(0).get("id").toString();
+                        System.out.println("Id nowego tetu to: " + idT);
+
                         StartingPoint_Main.changeScene("ADD QUESTION", new addQuestion().getAddQuestion());
 
+                        ((Lecturer)(StartingPoint_Main.globalUser)).newTestID = idT;
 
                     }
                     else
