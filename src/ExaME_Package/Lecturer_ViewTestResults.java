@@ -8,16 +8,15 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 
-import java.util.ArrayList;
+public class Lecturer_ViewTestResults {
 
-public class Student_View_Scores {
 
-    public Scene getStudent_View_Scores() throws ClassNotFoundException {
+    public Scene getLecturer_ViewTestResults() throws ClassNotFoundException {
         //  GRID
 
 
         DataBaseManager dataBaseManager = new DataBaseManager();
-        String sql = "SELECT test.subject, test.testTitle, mark.mark FROM mark JOIN test ON test.id=mark.idTest WHERE mark.idStudent=" + StartingPoint_Main.globalUser.ID + ";";
+        String sql = "SELECT user.name, user.surname, mark.mark FROM mark JOIN user ON user.id=mark.idStudent WHERE mark.idTest=" + "1" + ";";
         dataBaseManager.sendQuery_GET(sql);
 
 
@@ -41,14 +40,14 @@ public class Student_View_Scores {
 
 
 
-        Label subject_LF = new Label("SUBJECT");
-        grid.add(subject_LF, 0, 1);
+        Label surname_LF = new Label("SURNAME");
+        grid.add(surname_LF, 0, 1);
 
-        Label title_LF = new Label("TITLE");
-        grid.add(title_LF, 1, 1);
+        Label name_LF = new Label("NAME");
+        grid.add(name_LF, 1, 1);
 
-        Label score_LF = new Label("SCORE");
-        grid.add(score_LF, 2, 1);
+        Label mark_LF = new Label("MARK");
+        grid.add(mark_LF, 2, 1);
 
 
 
@@ -59,14 +58,14 @@ public class Student_View_Scores {
         {
 
 
-            Label subject_L = new Label(dataBaseManager.resultList.get(i).get("subject").toString());
-            grid.add(subject_L, 0, i+2);
+            Label surname_L = new Label(dataBaseManager.resultList.get(i).get("surname").toString());
+            grid.add(surname_L, 0, i+2);
 
-            Label title_L = new Label(dataBaseManager.resultList.get(i).get("testTitle").toString());
-            grid.add(title_L, 1, i+2);
+            Label name_L = new Label(dataBaseManager.resultList.get(i).get("name").toString());
+            grid.add(name_L, 1, i+2);
 
-            Label score_L = new Label(dataBaseManager.resultList.get(i).get("mark").toString());
-            grid.add(score_L, 2, i+2);
+            Label mark_L = new Label(dataBaseManager.resultList.get(i).get("mark").toString());
+            grid.add(mark_L, 2, i+2);
 
         }
 
@@ -79,7 +78,7 @@ public class Student_View_Scores {
             @Override
             public void handle(ActionEvent event)
             {
-                StartingPoint_Main.changeScene("STUDENT MENU", new Student_Menu().getStudent_Menu());
+                StartingPoint_Main.changeScene("LECTURER MENU", new Lecturer_Menu().getLecturerMenu());
             }
         });
         grid.add( button_GoBack, 0, dataBaseManager.resultList.size()+5);
@@ -94,4 +93,6 @@ public class Student_View_Scores {
 
         return scene;
     }
+
+
 }

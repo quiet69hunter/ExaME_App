@@ -103,7 +103,11 @@ public class Lecturer_Menu extends Application {
             @Override
             public void handle(ActionEvent event)
             {
-
+                try {
+                    StartingPoint_Main.changeScene("VIEW TEST RESULTS", new Lecturer_ViewTestResults().getLecturer_ViewTestResults());
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
             }
         });
         grid.add(  button_viewTestResults, 0, 4);
