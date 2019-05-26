@@ -67,6 +67,7 @@ public class Student_Menu extends Application {
             public void handle(ActionEvent event)
             {
 
+                StartingPoint_Main.changeScene("TEST", new Student_Test_Enter().getStudentTestEnter());
             }
         });
         grid.add(button_StartTest, 0, 1);

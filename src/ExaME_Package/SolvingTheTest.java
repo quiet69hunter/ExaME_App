@@ -34,6 +34,8 @@ public class SolvingTheTest extends Application{
         GridPane grid = new GridPane();
         grid.setId("grid");
 
+
+
         Text scenetitle = new Text("TEST TITLE");
         scenetitle.setId("mainTitle");
         grid.add(scenetitle, 0, 0, 2, 1);
@@ -69,13 +71,39 @@ public class SolvingTheTest extends Application{
         button.setText("Next question");
 
 
+        DataBaseManager dataBaseManager = null;
+        try {
+            dataBaseManager = new DataBaseManager();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        String idtestu1=((Student)(StartingPoint_Main.globalUser)).idTest;
+        String sql="SELECT questionContent FROM question WHERE idTest = '"+idtestu1+"';";
+        dataBaseManager.sendQuery_GET(sql);
+        String  content=dataBaseManager.resultList/*get(0)*/.toString();
+        System.out.println("Pytanie " + content);
 
         button.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event)
             {
 
+               /* if(((Student)(StartingPoint_Main.globalUser)).idTest < ((Lecturer)(StartingPoint_Main.globalUser)).numOfQuestionsInTest)
+                {
+                    ((Lecturer)(StartingPoint_Main.globalUser)).questionCounter++;
+                    Toast.makeToast("THE QUESTION WAS SUCCESSFULLY ADDED TO THE DATABASE");
+                }
+                else
+                {
+                    ((Lecturer)(StartingPoint_Main.globalUser)).questionCounter = 1;
+                    ((Lecturer)(StartingPoint_Main.globalUser)).numOfQuestionsInTest = 0;
+                    ((Lecturer)(StartingPoint_Main.globalUser)).newTestID = "";
 
+                    Toast.makeToast("YOU ADDED TOTAL AMOUNT OF QUESTIONS TO THIS TEST. \n THE TEST WAS SUCCESSFULLY ADDED TO THE DATABASE");
+
+                    StartingPoint_Main.changeScene("LECTURER MENU", new Lecturer_Menu().getLecturerMenu());
+                }*/
             }
         });
         grid.add(button, 1, 7);

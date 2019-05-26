@@ -57,13 +57,37 @@ public class Student_Test_Enter extends Application {
             {
 
 
+                if(!accessKey_T.getText().isEmpty())
+                {
+                    DataBaseManager dataBaseManager = null;
+                    try {
+                        dataBaseManager = new DataBaseManager();
+                    } catch (ClassNotFoundException e) {
+                        e.printStackTrace();
+                    }
+
+                    String  sql = "SELECT test.id FROM test WHERE test.accessKey='"+accessKey_T.getText()+"';";
+                    dataBaseManager.sendQuery_GET(sql);
+                    String id=dataBaseManager.resultList.get(0).toString();
+                    System.out.println("Id tetu o podanym kluczu: " + id);
+
+                    ((Student)(StartingPoint_Main.globalUser)).idTest = id;
+                    StartingPoint_Main.changeScene("TEST", new SolvingTheTest().getSolvingTheTest());
+
+
+                }
+
+                accessKey_T.setText("");
+
             }
+
         });
+
+
         grid.add(button, 1, 3);
 
 
         //  END BUTTON
-
 
 
 

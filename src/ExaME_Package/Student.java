@@ -24,6 +24,7 @@ LIST OF THING TO IMPROVE/ADD
 public class Student extends User {
 
 
+    public String idTest; //dopisane
     private ArrayList<Integer> testIDs = new ArrayList<>();
 
 

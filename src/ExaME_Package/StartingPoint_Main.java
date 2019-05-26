@@ -15,12 +15,12 @@ public class StartingPoint_Main extends Application {
    public static Scene globalScene = null;
    public static Stage globalPrimaryStage = null;
 
+
     public static void changeScene(String sceneTitle, Scene getScene)
     {
         StartingPoint_Main.globalPrimaryStage.setScene(getScene);
         StartingPoint_Main.globalPrimaryStage.setTitle(sceneTitle);
     }
-
 
 
     public static void main(String[] args)
