@@ -1,6 +1,7 @@
 package ExaME_Package;
 
 import javafx.application.Application;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -43,24 +44,6 @@ public class SolvingTheTest extends Application{
         Label questionContent_T= new Label("TRESC PYTANIA");
         grid.add(questionContent_T,0,1);
 
-
-        final ToggleGroup group = new ToggleGroup();
-
-        RadioButton rb1 = new RadioButton("ODPOWIEDZ A");
-        rb1.setToggleGroup(group);
-        grid.add(rb1, 0, 2);
-
-        RadioButton rb2 = new RadioButton("ODPOWIEDZ B");
-        rb2.setToggleGroup(group);
-        grid.add(rb2, 0, 3);
-
-        RadioButton rb3 = new RadioButton("ODPOWIEDZ C");
-        rb3.setToggleGroup(group);
-        grid.add(rb3, 0, 4);
-
-        RadioButton rb4 = new RadioButton("ODPOWIEDZ D");
-        rb4.setToggleGroup(group);
-        grid.add(rb4, 0, 5);
 
 
 
@@ -174,6 +157,34 @@ public class SolvingTheTest extends Application{
         ((Student)(StartingPoint_Main.globalUser)).test = tempTest;
         System.out.println( ((Student)(StartingPoint_Main.globalUser)).test );
 
+
+
+
+
+        final ToggleGroup group = new ToggleGroup();
+
+        Integer curQue = ((Student)(StartingPoint_Main.globalUser)).currentQuestion;
+
+        RadioButton rb1 = new RadioButton(((Student)(StartingPoint_Main.globalUser)).test.questions.get( curQue).answers.get(0) );
+        rb1.setToggleGroup(group);
+        grid.add(rb1, 0, 2);
+
+        RadioButton rb2 = new RadioButton(((Student)(StartingPoint_Main.globalUser)).test.questions.get( curQue).answers.get(1) );
+        rb2.setToggleGroup(group);
+        grid.add(rb2, 0, 3);
+
+        RadioButton rb3 = new RadioButton(((Student)(StartingPoint_Main.globalUser)).test.questions.get( curQue).answers.get(2) );
+        rb3.setToggleGroup(group);
+        grid.add(rb3, 0, 4);
+
+        RadioButton rb4 = new RadioButton(((Student)(StartingPoint_Main.globalUser)).test.questions.get( curQue).answers.get(3) );
+        rb4.setToggleGroup(group);
+        grid.add(rb4, 0, 5);
+
+
+
+
+
         //  BUTTON
 
         Button button_NextQuestion = new Button();
@@ -188,6 +199,25 @@ public class SolvingTheTest extends Application{
             public void handle(ActionEvent event)
             {
 
+
+                RadioButton selectedRadioButton = (RadioButton) group.getSelectedToggle();
+                ObservableList<Toggle> list = group.getToggles();
+                if(selectedRadioButton == list.get(0) && ((Student)(StartingPoint_Main.globalUser)).test.questions.get(curQue).correctAnswer == 0)
+                {
+                    System.out.println("Wybrano przyciek 0");
+                }
+                if(selectedRadioButton == list.get(1))
+                {
+                    System.out.println("Wybrano przyciek 1" );
+                }
+                if(selectedRadioButton == list.get(2))
+                {
+                    System.out.println("Wybrano przyciek 2");
+                }
+                if(selectedRadioButton == list.get(3))
+                {
+                    System.out.println("Wybrano przyciek 3");
+                }
 
 
             }

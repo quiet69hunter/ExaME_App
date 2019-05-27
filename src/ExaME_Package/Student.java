@@ -27,6 +27,8 @@ public class Student extends User {
     public String idTest; //dopisane
     public  Test test;
     private ArrayList<Integer> testIDs = new ArrayList<>();
+    Integer Score = 0;
+    Integer currentQuestion = 0;
 
 
     public Student(String name, String surname, String email, Integer id) {
