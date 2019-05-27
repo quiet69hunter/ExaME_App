@@ -19,7 +19,7 @@ public class Student_FinishTest
 
 
         DataBaseManager dataBaseManager = new DataBaseManager();
-        String sql = "INSERT INTO `mark`(`idTest`, `idStudent`, `dateOpen`, `dateClose`, `mark`) VALUES ('" + ((Student)(StartingPoint_Main.globalUser)).idTest  + "," + (StartingPoint_Main.globalUser).ID.toString() + ",NOW(),NOW()," + ((Student)(StartingPoint_Main.globalUser)).Score.toString() + ");";
+        String sql = "INSERT INTO `mark`(`idTest`, `idStudent`, `dateOpen`, `dateClose`, `mark`) VALUES (" + ((Student)(StartingPoint_Main.globalUser)).idTest  + "," + (StartingPoint_Main.globalUser).ID.toString() + ",NOW(),NOW()," + ((Student)(StartingPoint_Main.globalUser)).Score.toString() + ");";
         dataBaseManager.sendQuery_SET(sql);
 
 
