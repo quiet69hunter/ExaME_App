@@ -41,8 +41,7 @@ public class SolvingTheTest extends Application{
         scenetitle.setId("mainTitle");
         grid.add(scenetitle, 0, 0, 2, 1);
 
-        Label questionContent_T= new Label("TRESC PYTANIA");
-        grid.add(questionContent_T,0,1);
+
 
 
 
@@ -88,7 +87,6 @@ public class SolvingTheTest extends Application{
             Integer timeLimit = Integer.parseInt(map.get("timeLimit").toString());
             String questionContent = map.get("questionContent").toString();
             String answerIsCorrect;
-            Integer pointOfAnswer = Integer.parseInt(map.get("pointOfAnswer").toString());
             String testTitle = map.get("testTitle").toString();
 
 
@@ -96,7 +94,7 @@ public class SolvingTheTest extends Application{
             tempTest.setTestTime(timeLimit);
 
             tempQuestion.questionContent = questionContent;
-            tempQuestion.pointsForWrongAnswer = pointOfAnswer;
+
 
 
             //  tresc pytan
@@ -104,41 +102,58 @@ public class SolvingTheTest extends Application{
             String answerContent = map.get("answerContent").toString();
             tempQuestion.answers.add(answerContent);
              answerIsCorrect = map.get("answerIsCorrect").toString();
+            Integer pointOfAnswer = Integer.parseInt(map.get("pointOfAnswer").toString());
             if(answerIsCorrect == "true") {
             tempQuestion.correctAnswer = 0;
             tempQuestion.pointsForCorrectAnswer = pointOfAnswer;
+            }
+            else
+            {
+                tempQuestion.pointsForWrongAnswer = pointOfAnswer;
             }
 
             map = dataBaseManager.resultList.get(i+1);
             answerContent = map.get("answerContent").toString();
             tempQuestion.answers.add(answerContent);
             answerIsCorrect = map.get("answerIsCorrect").toString();
+            pointOfAnswer = Integer.parseInt(map.get("pointOfAnswer").toString());
             if(answerIsCorrect == "true") {
                 tempQuestion.correctAnswer = 1;
                 tempQuestion.pointsForCorrectAnswer = pointOfAnswer;
             }
-
+            else
+            {
+                tempQuestion.pointsForWrongAnswer = pointOfAnswer;
+            }
 
             map = dataBaseManager.resultList.get(i+2);
             answerContent = map.get("answerContent").toString();
             tempQuestion.answers.add(answerContent);
             answerIsCorrect = map.get("answerIsCorrect").toString();
+            pointOfAnswer = Integer.parseInt(map.get("pointOfAnswer").toString());
             if(answerIsCorrect == "true") {
                 tempQuestion.correctAnswer = 2;
                 tempQuestion.pointsForCorrectAnswer = pointOfAnswer;
             }
-
+            else
+            {
+                tempQuestion.pointsForWrongAnswer = pointOfAnswer;
+            }
 
 
             map = dataBaseManager.resultList.get(i+3);
             answerContent = map.get("answerContent").toString();
             tempQuestion.answers.add(answerContent);
             answerIsCorrect = map.get("answerIsCorrect").toString();
+            pointOfAnswer = Integer.parseInt(map.get("pointOfAnswer").toString());
             if(answerIsCorrect == "true") {
                 tempQuestion.correctAnswer = 3;
                 tempQuestion.pointsForCorrectAnswer = pointOfAnswer;
             }
-
+            else
+            {
+                tempQuestion.pointsForWrongAnswer = pointOfAnswer;
+            }
 
 
 
@@ -160,10 +175,15 @@ public class SolvingTheTest extends Application{
 
 
 
+        Integer curQue = ((Student)(StartingPoint_Main.globalUser)).currentQuestion;
+
+
+        Label questionContent_T= new Label(((Student)(StartingPoint_Main.globalUser)).test.questions.get(curQue).questionContent);
+        grid.add(questionContent_T,0,1);
 
         final ToggleGroup group = new ToggleGroup();
 
-        Integer curQue = ((Student)(StartingPoint_Main.globalUser)).currentQuestion;
+
 
         RadioButton rb1 = new RadioButton(((Student)(StartingPoint_Main.globalUser)).test.questions.get( curQue).answers.get(0) );
         rb1.setToggleGroup(group);
@@ -205,20 +225,48 @@ public class SolvingTheTest extends Application{
                 if(selectedRadioButton == list.get(0) && ((Student)(StartingPoint_Main.globalUser)).test.questions.get(curQue).correctAnswer == 0)
                 {
                     System.out.println("Wybrano przyciek 0");
+                    ((Student)(StartingPoint_Main.globalUser)).Score += ((Student)(StartingPoint_Main.globalUser)).test.questions.get(curQue).pointsForCorrectAnswer;
                 }
-                if(selectedRadioButton == list.get(1))
+                else if(selectedRadioButton == list.get(1) && ((Student)(StartingPoint_Main.globalUser)).test.questions.get(curQue).correctAnswer == 1)
                 {
                     System.out.println("Wybrano przyciek 1" );
+                    ((Student)(StartingPoint_Main.globalUser)).Score += ((Student)(StartingPoint_Main.globalUser)).test.questions.get(curQue).pointsForCorrectAnswer;
                 }
-                if(selectedRadioButton == list.get(2))
+                else if(selectedRadioButton == list.get(2) && ((Student)(StartingPoint_Main.globalUser)).test.questions.get(curQue).correctAnswer == 2)
                 {
                     System.out.println("Wybrano przyciek 2");
+                    ((Student)(StartingPoint_Main.globalUser)).Score += ((Student)(StartingPoint_Main.globalUser)).test.questions.get(curQue).pointsForCorrectAnswer;
                 }
-                if(selectedRadioButton == list.get(3))
+                else if(selectedRadioButton == list.get(3) && ((Student)(StartingPoint_Main.globalUser)).test.questions.get(curQue).correctAnswer == 3)
                 {
                     System.out.println("Wybrano przyciek 3");
+                    ((Student)(StartingPoint_Main.globalUser)).Score += ((Student)(StartingPoint_Main.globalUser)).test.questions.get(curQue).pointsForCorrectAnswer;
+                }
+                else
+                {
+                    ((Student)(StartingPoint_Main.globalUser)).Score += ((Student)(StartingPoint_Main.globalUser)).test.questions.get(curQue).pointsForWrongAnswer;
                 }
 
+
+                ((Student)(StartingPoint_Main.globalUser)).currentQuestion++;
+                System.out.println("Uzyskana ilosc punktow" + ((Student)(StartingPoint_Main.globalUser)).Score.toString());
+
+
+                if(((Student)(StartingPoint_Main.globalUser)).currentQuestion < ((Student)(StartingPoint_Main.globalUser)).test.questions.size()) {
+                    try {
+                        StartingPoint_Main.changeScene("SOLVE QUESTIONS", new SolvingTheTest().getSolvingTheTest());
+                    } catch (ClassNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                }
+                else
+                {
+                    try {
+                        StartingPoint_Main.changeScene("YOUR SCORE", new Student_FinishTest().getStudent_FinishTest());
+                    } catch (ClassNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                }
 
             }
         });
