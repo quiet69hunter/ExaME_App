@@ -110,7 +110,8 @@ public class Question {
 
     @Override
     public String toString() {
-        return "Question{" +
+        System.out.println();
+        return "\n\tQuestion{" +
                 "questionNumber=" + questionNumber +
                 ", questionContent='" + questionContent + '\'' +
                 ", answers=" + answers +

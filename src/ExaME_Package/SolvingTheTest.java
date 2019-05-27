@@ -104,7 +104,7 @@ public class SolvingTheTest extends Application{
 
             Integer timeLimit = Integer.parseInt(map.get("timeLimit").toString());
             String questionContent = map.get("questionContent").toString();
-            Boolean answerIsCorrect = (Boolean)map.get("answerIsCorrect");
+            String answerIsCorrect;
             Integer pointOfAnswer = Integer.parseInt(map.get("pointOfAnswer").toString());
             String testTitle = map.get("testTitle").toString();
 
@@ -115,12 +115,13 @@ public class SolvingTheTest extends Application{
             tempQuestion.questionContent = questionContent;
             tempQuestion.pointsForWrongAnswer = pointOfAnswer;
 
+
             //  tresc pytan
 
             String answerContent = map.get("answerContent").toString();
             tempQuestion.answers.add(answerContent);
-             answerIsCorrect = (Boolean)map.get("answerIsCorrect");
-            if(answerIsCorrect) {
+             answerIsCorrect = map.get("answerIsCorrect").toString();
+            if(answerIsCorrect == "true") {
             tempQuestion.correctAnswer = 0;
             tempQuestion.pointsForCorrectAnswer = pointOfAnswer;
             }
@@ -128,8 +129,8 @@ public class SolvingTheTest extends Application{
             map = dataBaseManager.resultList.get(i+1);
             answerContent = map.get("answerContent").toString();
             tempQuestion.answers.add(answerContent);
-            answerIsCorrect = (Boolean)map.get("answerIsCorrect");
-            if(answerIsCorrect) {
+            answerIsCorrect = map.get("answerIsCorrect").toString();
+            if(answerIsCorrect == "true") {
                 tempQuestion.correctAnswer = 1;
                 tempQuestion.pointsForCorrectAnswer = pointOfAnswer;
             }
@@ -138,8 +139,8 @@ public class SolvingTheTest extends Application{
             map = dataBaseManager.resultList.get(i+2);
             answerContent = map.get("answerContent").toString();
             tempQuestion.answers.add(answerContent);
-            answerIsCorrect = (Boolean)map.get("answerIsCorrect");
-            if(answerIsCorrect) {
+            answerIsCorrect = map.get("answerIsCorrect").toString();
+            if(answerIsCorrect == "true") {
                 tempQuestion.correctAnswer = 2;
                 tempQuestion.pointsForCorrectAnswer = pointOfAnswer;
             }
@@ -149,8 +150,8 @@ public class SolvingTheTest extends Application{
             map = dataBaseManager.resultList.get(i+3);
             answerContent = map.get("answerContent").toString();
             tempQuestion.answers.add(answerContent);
-            answerIsCorrect = (Boolean)map.get("answerIsCorrect");
-            if(answerIsCorrect) {
+            answerIsCorrect = map.get("answerIsCorrect").toString();
+            if(answerIsCorrect == "true") {
                 tempQuestion.correctAnswer = 3;
                 tempQuestion.pointsForCorrectAnswer = pointOfAnswer;
             }
@@ -167,7 +168,11 @@ public class SolvingTheTest extends Application{
         System.out.println();
         System.out.println();
 
-        System.out.println(tempTest);
+
+
+
+        ((Student)(StartingPoint_Main.globalUser)).test = tempTest;
+        System.out.println( ((Student)(StartingPoint_Main.globalUser)).test );
 
         //  BUTTON
 
