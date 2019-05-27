@@ -28,8 +28,7 @@ LIST OF THING TO IMPROVE/ADD
 public class SolvingTheTest extends Application{
 
 
-    public Scene getSolvingTheTest()
-    {
+    public Scene getSolvingTheTest() throws ClassNotFoundException {
 
         GridPane grid = new GridPane();
         grid.setId("grid");
@@ -64,49 +63,53 @@ public class SolvingTheTest extends Application{
 
 
 
+        DataBaseManager dataBaseManager = new DataBaseManager();
+
+
+        String idTest =((Student)(StartingPoint_Main.globalUser)).idTest;
+        String sql="SELECT questionContent FROM question WHERE idTest = '" + idTest + "';";
+        dataBaseManager.sendQuery_GET(sql);
+
+
+        sql = "SELECT test.id, test.testTitle, test.testQuestionsAmount, test.timeLimit, question.id, question.questionContent, answer.answerContent, answer.answerIsCorrect, answer.pointOfAnswer, answer.ABCD FROM test JOIN question ON question.idTest=test.id JOIN answer ON answer.idQuestion=question.id WHERE test.id='" + idTest + "';";
+
+
+        //  id
+        //  testTitle
+        //  testQuestionsAmount
+        //  timeLimit
+        //  accessKey
+        //  subject
+        //  idLecturer
+
+
+        dataBaseManager.sendQuery_GET(sql);
+        dataBaseManager.printResultList();
+
+
+
+        
+
 
         //  BUTTON
 
-        Button button = new Button();
-        button.setText("Next question");
+        Button button_NextQuestion = new Button();
+        button_NextQuestion.setText("Next question");
 
 
-        DataBaseManager dataBaseManager = null;
-        try {
-            dataBaseManager = new DataBaseManager();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
 
-        String idtestu1=((Student)(StartingPoint_Main.globalUser)).idTest;
-        String sql="SELECT questionContent FROM question WHERE idTest = '"+idtestu1+"';";
-        dataBaseManager.sendQuery_GET(sql);
-        String  content=dataBaseManager.resultList/*get(0)*/.toString();
-        System.out.println("Pytanie " + content);
 
-        button.setOnAction(new EventHandler<ActionEvent>() {
+
+        button_NextQuestion.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event)
             {
 
-               /* if(((Student)(StartingPoint_Main.globalUser)).idTest < ((Lecturer)(StartingPoint_Main.globalUser)).numOfQuestionsInTest)
-                {
-                    ((Lecturer)(StartingPoint_Main.globalUser)).questionCounter++;
-                    Toast.makeToast("THE QUESTION WAS SUCCESSFULLY ADDED TO THE DATABASE");
-                }
-                else
-                {
-                    ((Lecturer)(StartingPoint_Main.globalUser)).questionCounter = 1;
-                    ((Lecturer)(StartingPoint_Main.globalUser)).numOfQuestionsInTest = 0;
-                    ((Lecturer)(StartingPoint_Main.globalUser)).newTestID = "";
 
-                    Toast.makeToast("YOU ADDED TOTAL AMOUNT OF QUESTIONS TO THIS TEST. \n THE TEST WAS SUCCESSFULLY ADDED TO THE DATABASE");
 
-                    StartingPoint_Main.changeScene("LECTURER MENU", new Lecturer_Menu().getLecturerMenu());
-                }*/
             }
         });
-        grid.add(button, 1, 7);
+        grid.add(button_NextQuestion, 1, 7);
 
 
         //  END BUTTON

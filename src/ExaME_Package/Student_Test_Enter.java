@@ -68,11 +68,15 @@ public class Student_Test_Enter extends Application {
 
                     String  sql = "SELECT test.id FROM test WHERE test.accessKey='"+accessKey_T.getText()+"';";
                     dataBaseManager.sendQuery_GET(sql);
-                    String id=dataBaseManager.resultList.get(0).toString();
+                    String id=dataBaseManager.resultList.get(0).get("id").toString();
                     System.out.println("Id tetu o podanym kluczu: " + id);
 
                     ((Student)(StartingPoint_Main.globalUser)).idTest = id;
-                    StartingPoint_Main.changeScene("TEST", new SolvingTheTest().getSolvingTheTest());
+                    try {
+                        StartingPoint_Main.changeScene("TEST", new SolvingTheTest().getSolvingTheTest());
+                    } catch (ClassNotFoundException e) {
+                        e.printStackTrace();
+                    }
 
 
                 }
