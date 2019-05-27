@@ -26,17 +26,6 @@ LIST OF THING TO IMPROVE/ADD
 
 
 public class Question {
-    @Override
-    public String toString() {
-        return "Question{" +
-                "questionNumber=" + questionNumber +
-                ", questionContent='" + questionContent + '\'' +
-                ", answers=" + answers +
-                ", correctAnswer=" + correctAnswer +
-                ", pointsForCorrectAnswer=" + pointsForCorrectAnswer +
-                ", pointsForWrongAnswer=" + pointsForWrongAnswer +
-                '}';
-    }
 
     public Integer questionNumber;
 
@@ -49,7 +38,10 @@ public class Question {
     public Integer pointsForWrongAnswer;
 
 
-
+    public Question()
+    {
+        answers = new ArrayList<>();
+    };
     //  CONSTRUCTOR
 
     public Question(Integer questionNumber, String questionContent, ArrayList<String> answers, Integer correctAnswer, Integer pointsForCorrectAnswer, Integer pointsForWrongAnswer) {
@@ -114,5 +106,17 @@ public class Question {
 
     public void setPointsForWrongAnswer(Integer pointsForWrongAnswer) {
         this.pointsForWrongAnswer = pointsForWrongAnswer;
+    }
+
+    @Override
+    public String toString() {
+        return "Question{" +
+                "questionNumber=" + questionNumber +
+                ", questionContent='" + questionContent + '\'' +
+                ", answers=" + answers +
+                ", correctAnswer=" + correctAnswer +
+                ", pointsForCorrectAnswer=" + pointsForCorrectAnswer +
+                ", pointsForWrongAnswer=" + pointsForWrongAnswer +
+                '}';
     }
 }

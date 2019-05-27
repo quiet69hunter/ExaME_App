@@ -10,6 +10,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 
 
@@ -28,7 +29,7 @@ LIST OF THING TO IMPROVE/ADD
 public class SolvingTheTest extends Application{
 
 
-    public Scene getSolvingTheTest() throws ClassNotFoundException {
+    public Scene getSolvingTheTest() throws ClassNotFoundException{
 
         GridPane grid = new GridPane();
         grid.setId("grid");
@@ -84,12 +85,89 @@ public class SolvingTheTest extends Application{
 
 
         dataBaseManager.sendQuery_GET(sql);
+
+        System.out.println(dataBaseManager.resultList.get(0).keySet());
+
         dataBaseManager.printResultList();
 
+        Test tempTest = new Test();
+
+       // for(Map<String, Object> map : dataBaseManager.resultList)
+
+        for(int i=0; i < dataBaseManager.resultList.size(); i += 4)
+        {
+
+            Question tempQuestion = new Question();
 
 
-        
+            Map<String, Object> map = dataBaseManager.resultList.get(i);
 
+            Integer timeLimit = Integer.parseInt(map.get("timeLimit").toString());
+            String questionContent = map.get("questionContent").toString();
+            Boolean answerIsCorrect = (Boolean)map.get("answerIsCorrect");
+            Integer pointOfAnswer = Integer.parseInt(map.get("pointOfAnswer").toString());
+            String testTitle = map.get("testTitle").toString();
+
+
+            tempTest.setTitle(testTitle);
+            tempTest.setTestTime(timeLimit);
+
+            tempQuestion.questionContent = questionContent;
+            tempQuestion.pointsForWrongAnswer = pointOfAnswer;
+
+            //  tresc pytan
+
+            String answerContent = map.get("answerContent").toString();
+            tempQuestion.answers.add(answerContent);
+             answerIsCorrect = (Boolean)map.get("answerIsCorrect");
+            if(answerIsCorrect) {
+            tempQuestion.correctAnswer = 0;
+            tempQuestion.pointsForCorrectAnswer = pointOfAnswer;
+            }
+
+            map = dataBaseManager.resultList.get(i+1);
+            answerContent = map.get("answerContent").toString();
+            tempQuestion.answers.add(answerContent);
+            answerIsCorrect = (Boolean)map.get("answerIsCorrect");
+            if(answerIsCorrect) {
+                tempQuestion.correctAnswer = 1;
+                tempQuestion.pointsForCorrectAnswer = pointOfAnswer;
+            }
+
+
+            map = dataBaseManager.resultList.get(i+2);
+            answerContent = map.get("answerContent").toString();
+            tempQuestion.answers.add(answerContent);
+            answerIsCorrect = (Boolean)map.get("answerIsCorrect");
+            if(answerIsCorrect) {
+                tempQuestion.correctAnswer = 2;
+                tempQuestion.pointsForCorrectAnswer = pointOfAnswer;
+            }
+
+
+
+            map = dataBaseManager.resultList.get(i+3);
+            answerContent = map.get("answerContent").toString();
+            tempQuestion.answers.add(answerContent);
+            answerIsCorrect = (Boolean)map.get("answerIsCorrect");
+            if(answerIsCorrect) {
+                tempQuestion.correctAnswer = 3;
+                tempQuestion.pointsForCorrectAnswer = pointOfAnswer;
+            }
+
+
+
+
+            //tempQuestion.answers.add(map.get(""));
+
+            tempTest.questions.add(tempQuestion);
+
+        }
+
+        System.out.println();
+        System.out.println();
+
+        System.out.println(tempTest);
 
         //  BUTTON
 

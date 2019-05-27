@@ -26,12 +26,18 @@ LIST OF THING TO IMPROVE/ADD
 public class Test  {
 
     //private Integer testID;
-    //private ArrayList<Question> questions;
+    public ArrayList<Question> questions;
     private Integer testTime;
     private long Key;
     private String title;
     private Integer questionAmount;
     private String nameOfSubject;
+
+
+    public Test()
+    {
+        questions = new ArrayList<>();
+    };
 
     public Test( String title,  String nameOfSubject, Integer questionAmount, Integer testTime)
     {
@@ -70,5 +76,18 @@ public class Test  {
 
     public void setKey(long key) {
         Key = key;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Test{" +
+                "questions=" + questions +
+                ", testTime=" + testTime +
+                ", Key=" + Key +
+                ", title='" + title + '\'' +
+                ", questionAmount=" + questionAmount +
+                ", nameOfSubject='" + nameOfSubject + '\'' +
+                '}';
     }
 }
