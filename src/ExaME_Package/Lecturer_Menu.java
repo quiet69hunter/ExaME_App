@@ -73,12 +73,16 @@ public class Lecturer_Menu extends Application {
 
 
         Button button_generateKey = new Button();
-        button_generateKey.setText("GENERATE NEW KEY FOR A TEST");
+        button_generateKey.setText("GENERATE NEW KEY FOR A TEST // Na czas testow:  TIMER");
         button_generateKey.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event)
             {
-
+                try {
+                    StartingPoint_Main.changeScene("TIMER", new Timer().getTimer());
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
             }
         });
         grid.add( button_generateKey, 0, 2);
