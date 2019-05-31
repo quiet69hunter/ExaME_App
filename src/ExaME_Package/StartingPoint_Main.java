@@ -2,6 +2,7 @@ package ExaME_Package;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -16,8 +17,10 @@ public class StartingPoint_Main extends Application {
    public static Stage globalPrimaryStage = null;
 
 
+
     public static void changeScene(String sceneTitle, Scene getScene)
     {
+
         StartingPoint_Main.globalPrimaryStage.setScene(getScene);
         StartingPoint_Main.globalPrimaryStage.setTitle(sceneTitle);
     }
@@ -39,11 +42,13 @@ public class StartingPoint_Main extends Application {
 
         globalScene = new Login().getLoginScene();
         primaryStage.setScene(globalScene);
+
         globalScene.getStylesheets().add(Login.class.getResource("Style.css").toExternalForm());
         primaryStage.setTitle("Login");
 
         primaryStage.show();
         globalPrimaryStage = primaryStage;
+
 
     }
 }

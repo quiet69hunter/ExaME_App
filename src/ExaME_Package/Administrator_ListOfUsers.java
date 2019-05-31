@@ -1,17 +1,20 @@
 package ExaME_Package;
 
+import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 
 import java.util.ArrayList;
 
 public class Administrator_ListOfUsers {
+
 
     public Scene getAdministrator_ListOfUsers() throws ClassNotFoundException {
         //  GRID
@@ -91,10 +94,17 @@ public class Administrator_ListOfUsers {
 
 
 
+        StackPane imageHolder = new StackPane(grid);
 
-        Scene scene = new Scene(grid, 1600,900);
+        ScrollPane scrollPane = new ScrollPane();
+        scrollPane.setContent(imageHolder);
+        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
 
+
+        Scene scene = new Scene(scrollPane, 1600,900);
         scene.getStylesheets().add(Login.class.getResource("Style.css").toExternalForm());
+
+
 
         return scene;
     }
