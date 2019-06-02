@@ -69,14 +69,18 @@ public class Student_Test_Enter extends Application {
                     String  sql = "SELECT test.id FROM test WHERE test.accessKey='"+accessKey_T.getText()+"';";
                     dataBaseManager.sendQuery_GET(sql);
                     String id=dataBaseManager.resultList.get(0).get("id").toString();
-                    System.out.println("Id tetu o podanym kluczu: " + id);
 
 
+
+                    Timer timer = new Timer();
+                    sql = "SELECT test.timeLimit FROM test WHERE test.accessKey='"+accessKey_T.getText()+"';";
+                    dataBaseManager.sendQuery_GET(sql);
+                    timer.TIME = Integer.parseInt(dataBaseManager.resultList.get(0).get("timeLimit").toString());
 
 
                     // wywolanie okienka timera
                     try {
-                        ((Student)(StartingPoint_Main.globalUser)).timerScene = new Timer().getTimer();
+                        ((Student)(StartingPoint_Main.globalUser)).timerScene = timer.getTimer();
                     } catch (ClassNotFoundException e) {
                         e.printStackTrace();
                     }
@@ -85,7 +89,11 @@ public class Student_Test_Enter extends Application {
                     ((Student)(StartingPoint_Main.globalUser)).timerStage.setScene(((Student)(StartingPoint_Main.globalUser)).timerScene);
 
                     ((Student)(StartingPoint_Main.globalUser)).timerScene.getStylesheets().add(Login.class.getResource("Style.css").toExternalForm());
-                    ((Student)(StartingPoint_Main.globalUser)).timerStage.setTitle("Timer");
+                    ((Student)(StartingPoint_Main.globalUser)).timerStage.setTitle("TIMER");
+                    ((Student)(StartingPoint_Main.globalUser)).timerStage.setX((5));
+                    ((Student)(StartingPoint_Main.globalUser)).timerStage.setY((5));
+                   // ((Student)(StartingPoint_Main.globalUser)).timerStage.setX((primScreenBounds.getWidth() - primaryStage.getWidth()) / 2);
+                   // ((Student)(StartingPoint_Main.globalUser)).timerStage.setY((primScreenBounds.getHeight() - primaryStage.getHeight()) / 2);
 
                     ((Student)(StartingPoint_Main.globalUser)).timerStage.show();
 

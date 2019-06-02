@@ -31,6 +31,7 @@ public class Student extends User {
     public  Test test;
     private ArrayList<Integer> testIDs = new ArrayList<>();
     Integer Score = 0;
+    
     Integer currentQuestion = 0;
     public Stage timerStage = null;
     public Scene timerScene = null;
