@@ -9,12 +9,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import sun.security.util.Password;
 
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.URL;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -103,17 +101,16 @@ public class FirstLaunch extends Application {
                 {
                     if (URL_T.getText().isEmpty() && UserName_T.getText().isEmpty() && Password_T.getText().isEmpty())
                     {
-                        Toast.makeToast("INPUT AREA IS EMPTY");
+                        System.out.println("INPUT AREA IS EMPTY");
                     }
                     else if(!validateDatabase(URL_T.getText()))
                     {
-                        Toast.makeToast("INPUT URL IS INCORRECT");
+                        System.out.println("INPUT URL IS INCORRECT");
                     }
                     else
                     {
-                        System.out.println("URL is correct");
 
-                        Toast.makeToast("THE CREDENCIALS WERE SUCCESSFULLY SAVED");
+                        System.out.println("THE CREDENCIALS WERE SUCCESSFULLY SAVED");
 
 
                         FileWriter fileWriter = null;
@@ -145,7 +142,7 @@ public class FirstLaunch extends Application {
 
 
             Scene scene = new Scene(grid, 1600,900);
-            scene.getStylesheets().add(Login.class.getResource("Style.css").toExternalForm());
+            scene.getStylesheets().add(getClass().getResource("Style.css").toExternalForm());
 
 
 
