@@ -25,34 +25,30 @@ public class Administrator_ListOfUsers {
         dataBaseManager.sendQuery_GET(sql);
 
 
-
-
-
-
         GridPane grid = new GridPane();
         grid.setId("grid");
 
         Text scenetitle = new Text("MENU"); //   Tekst
         scenetitle.setId("mainTitle");
-        grid.add(scenetitle, 10, 0, 2, 1);
+        grid.add(scenetitle, 20, 0, 2, 1);
 
 
 
 
         Label id_LF = new Label("ID");
-        grid.add(id_LF, 10, 1);
+        grid.add(id_LF, 20, 1);
 
         Label name_LF = new Label("NAME");
-        grid.add(name_LF, 11, 1);
+        grid.add(name_LF, 21, 1);
 
         Label surname_LF = new Label("SURNAME");
-        grid.add(surname_LF, 12, 1);
+        grid.add(surname_LF, 22, 1);
 
         Label email_LF = new Label("EMAIL");
-        grid.add(email_LF, 13, 1);
+        grid.add(email_LF, 23, 1);
 
         Label access_LF = new Label("ACCESS");
-        grid.add(access_LF, 14, 1);
+        grid.add(access_LF, 24, 1);
 
 
 
@@ -61,19 +57,19 @@ public class Administrator_ListOfUsers {
         {
 
             Label id_L = new Label(dataBaseManager.resultList.get(i).get("id").toString());
-            grid.add(id_L, 10, i+2);
+            grid.add(id_L, 20, i+2);
 
             Label name_L = new Label(dataBaseManager.resultList.get(i).get("name").toString());
-            grid.add(name_L, 11, i+2);
+            grid.add(name_L, 21, i+2);
 
             Label surname_L = new Label(dataBaseManager.resultList.get(i).get("surname").toString());
-            grid.add(surname_L, 12, i+2);
+            grid.add(surname_L, 22, i+2);
 
             Label email_L = new Label(dataBaseManager.resultList.get(i).get("email").toString());
-            grid.add(email_L, 13, i+2);
+            grid.add(email_L, 23, i+2);
 
             Label access_L = new Label(dataBaseManager.resultList.get(i).get("access").toString());
-            grid.add(access_L, 14, i+2);
+            grid.add(access_L, 24, i+2);
 
 
         }
@@ -90,7 +86,7 @@ public class Administrator_ListOfUsers {
                 StartingPoint_Main.changeScene("ADMINISTRATOR MENU", new Administrator_Menu().getAdministratorMenu());
             }
         });
-        grid.add( button_GoBack, 10, dataBaseManager.resultList.size()+5);
+        grid.add( button_GoBack, 20, dataBaseManager.resultList.size()+5);
         //  END BUTTON
 
 
