@@ -12,22 +12,6 @@ import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
 
-/*
-
-Przykład użycia klasy Toast:
-
-
-String toastMsg = "some text...";
-int toastMsgTime = 3500; //3.5 seconds
-int fadeInTime = 500; //0.5 seconds
-int fadeOutTime= 500; //0.5 seconds
-Toast.makeText(primarystage, toastMsg, toastMsgTime, fadeInTime, fadeOutTime);
-
-
- Toast.makeText(StartingPoint_Main.globalPrimaryStage, "Udało się zalogować", 3000, 500, 500);
-
-
- */
 
 public final class Toast
 {

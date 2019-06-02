@@ -15,9 +15,9 @@ public class Timer {
 
 
     private Timeline animationTimeline;
-    private Integer TIME = 60;
+    public Integer TIME = null;
     private String string = "";
-    Label label = new Label("60");
+    Label label = new Label("");
 
 
 
@@ -30,7 +30,7 @@ public class Timer {
         {
             TIME--;
         }
-        string = TIME + "";
+        string = TIME/60 + " m    " + TIME%60 + " s";
         label.setText(string);
 
     }
@@ -56,11 +56,14 @@ public class Timer {
         grid.setId("grid");
 
 
+        Label info_L = new Label("TIME LEFT:");
+
+        grid.add(info_L, 0, 0);
 
 
 
         Label timer_L = label;
-        timer_L.setFont(javafx.scene.text.Font.font(200));
+
         grid.add(timer_L, 0, 1);
 
 
@@ -70,9 +73,10 @@ public class Timer {
 
 
 
-        Scene scene = new Scene(grid, 1600,900);
+        Scene scene = new Scene(grid, 150,150);
 
         scene.getStylesheets().add(Login.class.getResource("Style.css").toExternalForm());
+        timer_L.setFont(javafx.scene.text.Font.font(200));
 
         return scene;
     }

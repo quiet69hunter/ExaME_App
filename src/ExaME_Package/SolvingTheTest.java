@@ -10,6 +10,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -30,7 +31,7 @@ LIST OF THING TO IMPROVE/ADD
 public class SolvingTheTest extends Application{
 
 
-    public Scene getSolvingTheTest() throws ClassNotFoundException{
+    public Scene getSolvingTheTest() throws ClassNotFoundException, IOException {
 
         GridPane grid = new GridPane();
         grid.setId("grid");
@@ -257,6 +258,8 @@ public class SolvingTheTest extends Application{
                         StartingPoint_Main.changeScene("SOLVE QUESTIONS", new SolvingTheTest().getSolvingTheTest());
                     } catch (ClassNotFoundException e) {
                         e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
                 }
                 else
@@ -264,6 +267,8 @@ public class SolvingTheTest extends Application{
                     try {
                         StartingPoint_Main.changeScene("YOUR SCORE", new Student_FinishTest().getStudent_FinishTest());
                     } catch (ClassNotFoundException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
                         e.printStackTrace();
                     }
                 }

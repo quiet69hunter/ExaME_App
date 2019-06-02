@@ -9,7 +9,10 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 
 /*
@@ -64,17 +67,55 @@ public class Student_Test_Enter extends Application {
                         dataBaseManager = new DataBaseManager();
                     } catch (ClassNotFoundException e) {
                         e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
 
                     String  sql = "SELECT test.id FROM test WHERE test.accessKey='"+accessKey_T.getText()+"';";
                     dataBaseManager.sendQuery_GET(sql);
                     String id=dataBaseManager.resultList.get(0).get("id").toString();
-                    System.out.println("Id tetu o podanym kluczu: " + id);
+
+
+
+                    Timer timer = new Timer();
+                    sql = "SELECT test.timeLimit FROM test WHERE test.accessKey='"+accessKey_T.getText()+"';";
+                    dataBaseManager.sendQuery_GET(sql);
+                    timer.TIME = Integer.parseInt(dataBaseManager.resultList.get(0).get("timeLimit").toString());
+
+
+                    // wywolanie okienka timera
+                    try {
+                        ((Student)(StartingPoint_Main.globalUser)).timerScene = timer.getTimer();
+                    } catch (ClassNotFoundException e) {
+                        e.printStackTrace();
+                    }
+
+                    ((Student)(StartingPoint_Main.globalUser)).timerStage = new Stage();
+                    ((Student)(StartingPoint_Main.globalUser)).timerStage.setScene(((Student)(StartingPoint_Main.globalUser)).timerScene);
+
+                    ((Student)(StartingPoint_Main.globalUser)).timerScene.getStylesheets().add(Login.class.getResource("Style.css").toExternalForm());
+                    ((Student)(StartingPoint_Main.globalUser)).timerStage.setTitle("TIMER");
+                    ((Student)(StartingPoint_Main.globalUser)).timerStage.setX((5));
+                    ((Student)(StartingPoint_Main.globalUser)).timerStage.setY((5));
+                   // ((Student)(StartingPoint_Main.globalUser)).timerStage.setX((primScreenBounds.getWidth() - primaryStage.getWidth()) / 2);
+                   // ((Student)(StartingPoint_Main.globalUser)).timerStage.setY((primScreenBounds.getHeight() - primaryStage.getHeight()) / 2);
+
+                    ((Student)(StartingPoint_Main.globalUser)).timerStage.show();
+
+
+
+                    Date dt = new Date();
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    ((Student)(StartingPoint_Main.globalUser)).startDate =  sdf.format(dt);
+                    System.out.println(((Student)(StartingPoint_Main.globalUser)).startDate);
+
 
                     ((Student)(StartingPoint_Main.globalUser)).idTest = id;
                     try {
                         StartingPoint_Main.changeScene("TEST", new SolvingTheTest().getSolvingTheTest());
                     } catch (ClassNotFoundException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
                         e.printStackTrace();
                     }
 

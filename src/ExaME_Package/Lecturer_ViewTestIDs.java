@@ -8,12 +8,14 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 
+import java.io.IOException;
+
 public class Lecturer_ViewTestIDs {
 
 
 
 
-    public Scene getLecturer_ViewTestIDs() throws ClassNotFoundException {
+    public Scene getLecturer_ViewTestIDs() throws ClassNotFoundException, IOException {
         //  GRID
 
 
@@ -23,9 +25,6 @@ public class Lecturer_ViewTestIDs {
 
 
         dataBaseManager.printResultList();
-        System.out.println(dataBaseManager.resultList.get(0).keySet());
-
-
 
 
 

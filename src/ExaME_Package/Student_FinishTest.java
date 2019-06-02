@@ -8,18 +8,27 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Student_FinishTest
 {
 
 
-    public Scene getStudent_FinishTest() throws ClassNotFoundException {
+    public Scene getStudent_FinishTest() throws ClassNotFoundException, IOException {
 
 
 
+
+        Date dt = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String finishDate =  sdf.format(dt);
 
 
         DataBaseManager dataBaseManager = new DataBaseManager();
-        String sql = "INSERT INTO `mark`(`idTest`, `idStudent`, `dateOpen`, `dateClose`, `mark`) VALUES (" + ((Student)(StartingPoint_Main.globalUser)).idTest  + "," + (StartingPoint_Main.globalUser).ID.toString() + ",NOW(),NOW()," + ((Student)(StartingPoint_Main.globalUser)).Score.toString() + ");";
+        String sql = "INSERT INTO `mark`(`idTest`, `idStudent`, `dateOpen`, `dateClose`, `mark`) VALUES (" + ((Student)(StartingPoint_Main.globalUser)).idTest  + "," + (StartingPoint_Main.globalUser).ID.toString() + "," + "'" + ((Student)(StartingPoint_Main.globalUser)).startDate + "'" + "," + "'" + finishDate + "'" + "," + ((Student)(StartingPoint_Main.globalUser)).Score.toString() + ");";
+
         dataBaseManager.sendQuery_SET(sql);
 
 

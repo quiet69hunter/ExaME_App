@@ -8,11 +8,12 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Student_View_Scores {
 
-    public Scene getStudent_View_Scores() throws ClassNotFoundException {
+    public Scene getStudent_View_Scores() throws ClassNotFoundException, IOException {
         //  GRID
 
 

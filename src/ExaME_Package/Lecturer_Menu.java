@@ -13,6 +13,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 
@@ -99,6 +100,8 @@ public class Lecturer_Menu extends Application {
                     StartingPoint_Main.changeScene("VIEW TEST IDS", new Lecturer_ViewTestIDs().getLecturer_ViewTestIDs());
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             }
         });
@@ -112,7 +115,7 @@ public class Lecturer_Menu extends Application {
             public void handle(ActionEvent event)
             {
                 try {
-                    StartingPoint_Main.changeScene("VIEW TEST RESULTS", new Lecturer_ViewTestResults().getLecturer_ViewTestResults());
+                    StartingPoint_Main.changeScene("VIEW TEST RESULTS", new Lecturer_InputID_TestToView().getLecturer_InputID_TestToView());
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
                 }

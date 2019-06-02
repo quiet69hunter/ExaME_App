@@ -16,6 +16,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
@@ -59,7 +60,7 @@ public class Login extends Application {
     // Jesli takie element istenieje - zwraca true
     //  jeśli nie - zwraca false
 
-    public Boolean validateData(String email, String password) throws ClassNotFoundException, SQLException {
+    public Boolean validateData(String email, String password) throws ClassNotFoundException, SQLException, IOException {
 
 
         String sql = "SELECT EXISTS(SELECT *FROM user WHERE email = '" + email + "' AND password = '" + password + "');";
@@ -193,6 +194,8 @@ public class Login extends Application {
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
                 } catch (SQLException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
 

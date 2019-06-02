@@ -1,6 +1,10 @@
 package ExaME_Package;
 
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
 import java.util.ArrayList;
+import java.util.Date;
 
 
 /*
@@ -28,8 +32,13 @@ public class Student extends User {
     public  Test test;
     private ArrayList<Integer> testIDs = new ArrayList<>();
     Integer Score = 0;
-    Integer currentQuestion = 0;
 
+    Integer currentQuestion = 0;
+    public Stage timerStage = null;
+    public Scene timerScene = null;
+
+
+    public String startDate;
 
     public Student(String name, String surname, String email, Integer id) {
         super(name, surname, email, id);

@@ -9,7 +9,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 
-import java.sql.SQLException;
+import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /*
 
 
@@ -25,9 +28,17 @@ LIST OF THING TO IMPROVE/ADD
  */
 public class Lecturer_Make_New_Test {
 
-    private  Integer generateAccessKey()
+
+
+
+    //  Sprawdza czy podany String może być sparsowany do Inta
+    private Boolean validateNumberInput(String stringToParse )
     {
-        return 2;
+        String numberRegex = "\\d+";
+        Pattern p = Pattern.compile(numberRegex);
+
+        Matcher m = p.matcher(stringToParse);
+        return m.matches();
     }
 
     public Scene getLecturerMAekeNewTest() {
@@ -82,7 +93,7 @@ public class Lecturer_Make_New_Test {
             {
                 try {
 
-                    if (!timeLimit_T.getText().isEmpty() && !numberOfQuestions_T.getText().isEmpty())
+                    if (!timeLimit_T.getText().isEmpty() && !numberOfQuestions_T.getText().isEmpty() && validateNumberInput(numberOfQuestions_T.getText()) && validateNumberInput(timeLimit_T.getText()))
                     {
 
                         Integer timeLimit = Integer.parseInt(timeLimit_T.getText());
@@ -92,7 +103,7 @@ public class Lecturer_Make_New_Test {
                         Test t = new Test(title_T.getText(),subjectName_T.getText(),numOfQ,timeLimit);
 
                         DataBaseManager dataBaseManager = new DataBaseManager();
-                        String sql = "INSERT INTO `test`( `testTitle`,`testQuestionsAmount`, `timeLimit`, `accessKey`, `subject`, `idLecturer`) VALUES ('" + title_T.getText() + "','" + numOfQ + "', '" + timeLimit + "','"+t.getKey()+"','" + subjectName_T.getText() + "',1);";
+                        String sql = "INSERT INTO `test`( `testTitle`,`testQuestionsAmount`, `timeLimit`, `accessKey`, `subject`, `idLecturer`) VALUES ('" + title_T.getText() + "','" + numOfQ + "', '" + timeLimit + "','"+t.getKey()+"','" + subjectName_T.getText() + "'," + StartingPoint_Main.globalUser.ID +");";
 
                         dataBaseManager.sendQuery_SET(sql);
 
@@ -109,7 +120,7 @@ public class Lecturer_Make_New_Test {
                     }
                     else
                     {
-                        Toast.makeToast("SOME FIELDS ARE EMPTY");
+                        Toast.makeToast("INCORRECT INPUT OR SOME FIELDS ARE EMPTY");
                     }
 
 
@@ -117,6 +128,8 @@ public class Lecturer_Make_New_Test {
 
 
                 } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
 

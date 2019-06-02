@@ -9,6 +9,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 
@@ -76,6 +77,8 @@ public class Administrator_Menu extends Application {
                 try {
                     StartingPoint_Main.changeScene("LIST OF USERS", new Administrator_ListOfUsers().getAdministrator_ListOfUsers());
                 } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
