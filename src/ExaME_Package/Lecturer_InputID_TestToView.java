@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 
+import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -70,6 +71,8 @@ public class Lecturer_InputID_TestToView {
                     try {
                         StartingPoint_Main.changeScene("TEST RESULTS", new Lecturer_ViewTestResults().getLecturer_ViewTestResults() );
                     } catch (ClassNotFoundException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
                         e.printStackTrace();
                     }
                 }

@@ -11,12 +11,13 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Administrator_ListOfUsers {
 
 
-    public Scene getAdministrator_ListOfUsers() throws ClassNotFoundException {
+    public Scene getAdministrator_ListOfUsers() throws ClassNotFoundException, IOException {
         //  GRID
 
         DataBaseManager dataBaseManager = new DataBaseManager();

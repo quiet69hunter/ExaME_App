@@ -9,10 +9,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 
+import java.io.IOException;
+
 public class Lecturer_ViewTestResults {
 
 
-    public Scene getLecturer_ViewTestResults() throws ClassNotFoundException {
+    public Scene getLecturer_ViewTestResults() throws ClassNotFoundException, IOException {
         //  GRID
 
 

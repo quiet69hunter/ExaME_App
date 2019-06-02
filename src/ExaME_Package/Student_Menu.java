@@ -16,6 +16,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 
@@ -84,6 +85,8 @@ public class Student_Menu extends Application {
                 try {
                     StartingPoint_Main.changeScene("SCORES", new Student_View_Scores().getStudent_View_Scores());
                 } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
             }

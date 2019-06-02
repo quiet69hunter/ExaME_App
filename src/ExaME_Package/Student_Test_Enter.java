@@ -9,7 +9,10 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 
 /*
@@ -64,6 +67,8 @@ public class Student_Test_Enter extends Application {
                         dataBaseManager = new DataBaseManager();
                     } catch (ClassNotFoundException e) {
                         e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
 
                     String  sql = "SELECT test.id FROM test WHERE test.accessKey='"+accessKey_T.getText()+"';";
@@ -99,14 +104,18 @@ public class Student_Test_Enter extends Application {
 
 
 
-
-
+                    Date dt = new Date();
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    ((Student)(StartingPoint_Main.globalUser)).startDate =  sdf.format(dt);
+                    System.out.println(((Student)(StartingPoint_Main.globalUser)).startDate);
 
 
                     ((Student)(StartingPoint_Main.globalUser)).idTest = id;
                     try {
                         StartingPoint_Main.changeScene("TEST", new SolvingTheTest().getSolvingTheTest());
                     } catch (ClassNotFoundException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
                         e.printStackTrace();
                     }
 
