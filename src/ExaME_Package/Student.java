@@ -1,5 +1,8 @@
 package ExaME_Package;
 
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
 import java.util.ArrayList;
 
 
@@ -29,6 +32,8 @@ public class Student extends User {
     private ArrayList<Integer> testIDs = new ArrayList<>();
     Integer Score = 0;
     Integer currentQuestion = 0;
+    public Stage timerStage = null;
+    public Scene timerScene = null;
 
 
     public Student(String name, String surname, String email, Integer id) {

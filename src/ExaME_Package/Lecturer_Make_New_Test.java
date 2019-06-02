@@ -8,8 +8,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-import java.sql.SQLException;
 /*
 
 
@@ -25,9 +26,17 @@ LIST OF THING TO IMPROVE/ADD
  */
 public class Lecturer_Make_New_Test {
 
-    private  Integer generateAccessKey()
+
+
+
+    //  Sprawdza czy podany String może być sparsowany do Inta
+    private Boolean validateNumberInput(String stringToParse )
     {
-        return 2;
+        String numberRegex = "\\d+";
+        Pattern p = Pattern.compile(numberRegex);
+
+        Matcher m = p.matcher(stringToParse);
+        return m.matches();
     }
 
     public Scene getLecturerMAekeNewTest() {
@@ -82,7 +91,7 @@ public class Lecturer_Make_New_Test {
             {
                 try {
 
-                    if (!timeLimit_T.getText().isEmpty() && !numberOfQuestions_T.getText().isEmpty())
+                    if (!timeLimit_T.getText().isEmpty() && !numberOfQuestions_T.getText().isEmpty() && validateNumberInput(numberOfQuestions_T.getText()) && validateNumberInput(timeLimit_T.getText()))
                     {
 
                         Integer timeLimit = Integer.parseInt(timeLimit_T.getText());
@@ -109,7 +118,7 @@ public class Lecturer_Make_New_Test {
                     }
                     else
                     {
-                        Toast.makeToast("SOME FIELDS ARE EMPTY");
+                        Toast.makeToast("INCORRECT INPUT OR SOME FIELDS ARE EMPTY");
                     }
 
 

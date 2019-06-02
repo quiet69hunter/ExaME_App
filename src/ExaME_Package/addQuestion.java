@@ -19,6 +19,8 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 
@@ -56,6 +58,19 @@ LIST OF THING TO IMPROVE/ADD
 public class addQuestion extends Application {
 
     public ArrayList<Question> questions = new ArrayList<>();
+
+
+
+
+    //  Sprawdza czy podany String może być sparsowany do Inta
+    private Boolean validateNumberInput(String stringToParse )
+    {
+        String numberRegex = "\\d+";
+        Pattern p = Pattern.compile(numberRegex);
+
+        Matcher m = p.matcher(stringToParse);
+        return m.matches();
+    }
 
 
     public void viewQuestions()
@@ -181,13 +196,23 @@ public class addQuestion extends Application {
                 Integer pointsForCorrectAnswer = 0;
                 Integer pointsForWrongAnswer = 0;
 
-                if(!correctAnswer_T.getText().toString().isEmpty())
+                if(!correctAnswer_T.getText().isEmpty() && !validateNumberInput(correctAnswer_T.getText()))
                 {
                     pointsForCorrectAnswer = Integer.parseInt(correctAnswer_T.getText());
                 }
-                if(!wrongAnswer_T.getText().toString().isEmpty())
+                else
+                {
+                    Toast.makeToast("INCORRECT INPUT FOR \" POINTS FOR CORRECT ANSWER \" ");
+                }
+
+
+                if(!wrongAnswer_T.getText().isEmpty() && !validateNumberInput(wrongAnswer_T.getText()))
                 {
                     pointsForWrongAnswer = Integer.parseInt(wrongAnswer_T.getText());
+                }
+                else
+                {
+                    Toast.makeToast("INCORRECT INPUT FOR \" POINTS FOR WRONG ANSWER \" ");
                 }
 
                 Integer pointsA=pointsForWrongAnswer;
