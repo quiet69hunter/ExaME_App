@@ -23,9 +23,6 @@ public class Lecturer_ViewTestIDs {
 
 
         dataBaseManager.printResultList();
-        System.out.println(dataBaseManager.resultList.get(0).keySet());
-
-
 
 
 

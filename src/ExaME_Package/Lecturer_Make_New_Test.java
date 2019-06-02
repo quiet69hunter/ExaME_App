@@ -92,7 +92,7 @@ public class Lecturer_Make_New_Test {
                         Test t = new Test(title_T.getText(),subjectName_T.getText(),numOfQ,timeLimit);
 
                         DataBaseManager dataBaseManager = new DataBaseManager();
-                        String sql = "INSERT INTO `test`( `testTitle`,`testQuestionsAmount`, `timeLimit`, `accessKey`, `subject`, `idLecturer`) VALUES ('" + title_T.getText() + "','" + numOfQ + "', '" + timeLimit + "','"+t.getKey()+"','" + subjectName_T.getText() + "',1);";
+                        String sql = "INSERT INTO `test`( `testTitle`,`testQuestionsAmount`, `timeLimit`, `accessKey`, `subject`, `idLecturer`) VALUES ('" + title_T.getText() + "','" + numOfQ + "', '" + timeLimit + "','"+t.getKey()+"','" + subjectName_T.getText() + "'," + StartingPoint_Main.globalUser.ID +");";
 
                         dataBaseManager.sendQuery_SET(sql);
 

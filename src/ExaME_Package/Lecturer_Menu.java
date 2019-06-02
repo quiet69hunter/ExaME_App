@@ -112,7 +112,7 @@ public class Lecturer_Menu extends Application {
             public void handle(ActionEvent event)
             {
                 try {
-                    StartingPoint_Main.changeScene("VIEW TEST RESULTS", new Lecturer_ViewTestResults().getLecturer_ViewTestResults());
+                    StartingPoint_Main.changeScene("VIEW TEST RESULTS", new Lecturer_InputID_TestToView().getLecturer_InputID_TestToView());
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
                 }

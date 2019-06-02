@@ -29,6 +29,7 @@ public class Lecturer extends User {
     public Integer numOfQuestionsInTest = 0;
     public Integer questionCounter = 1;
     public String newTestID = "";
+    public String testID_ToView = "";
 
     public Lecturer(String name, String surname, String email, Integer id) {
         super(name, surname, email, id);

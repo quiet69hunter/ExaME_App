@@ -5,6 +5,7 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 
@@ -16,13 +17,11 @@ public class Lecturer_ViewTestResults {
 
 
         DataBaseManager dataBaseManager = new DataBaseManager();
-        String sql = "SELECT user.name, user.surname, mark.mark FROM mark JOIN user ON user.id=mark.idStudent WHERE mark.idTest=" + "1" + ";";
+        String sql = "SELECT user.name, user.surname, mark.mark FROM mark JOIN user ON user.id=mark.idStudent WHERE mark.idTest=" + ((Lecturer)(StartingPoint_Main.globalUser)).testID_ToView + ";";
         dataBaseManager.sendQuery_GET(sql);
 
 
         dataBaseManager.printResultList();
-        System.out.println(dataBaseManager.resultList.get(0).keySet());
-
 
 
 
@@ -32,9 +31,7 @@ public class Lecturer_ViewTestResults {
         GridPane grid = new GridPane();
         grid.setId("grid");
 
-        Text scenetitle = new Text("MENU"); //   Tekst
-        scenetitle.setId("mainTitle");
-        grid.add(scenetitle, 0, 0, 2, 1);
+
 
 
 
