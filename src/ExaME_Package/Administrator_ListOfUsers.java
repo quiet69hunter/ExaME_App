@@ -33,25 +33,25 @@ public class Administrator_ListOfUsers {
 
         Text scenetitle = new Text("MENU"); //   Tekst
         scenetitle.setId("mainTitle");
-        grid.add(scenetitle, 0, 0, 2, 1);
+        grid.add(scenetitle, 10, 0, 2, 1);
 
 
 
 
         Label id_LF = new Label("ID");
-        grid.add(id_LF, 0, 1);
+        grid.add(id_LF, 10, 1);
 
         Label name_LF = new Label("NAME");
-        grid.add(name_LF, 1, 1);
+        grid.add(name_LF, 11, 1);
 
         Label surname_LF = new Label("SURNAME");
-        grid.add(surname_LF, 2, 1);
+        grid.add(surname_LF, 12, 1);
 
         Label email_LF = new Label("EMAIL");
-        grid.add(email_LF, 3, 1);
+        grid.add(email_LF, 13, 1);
 
         Label access_LF = new Label("ACCESS");
-        grid.add(access_LF, 4, 1);
+        grid.add(access_LF, 14, 1);
 
 
 
@@ -60,19 +60,19 @@ public class Administrator_ListOfUsers {
         {
 
             Label id_L = new Label(dataBaseManager.resultList.get(i).get("id").toString());
-            grid.add(id_L, 0, i+2);
+            grid.add(id_L, 10, i+2);
 
             Label name_L = new Label(dataBaseManager.resultList.get(i).get("name").toString());
-            grid.add(name_L, 1, i+2);
+            grid.add(name_L, 11, i+2);
 
             Label surname_L = new Label(dataBaseManager.resultList.get(i).get("surname").toString());
-            grid.add(surname_L, 2, i+2);
+            grid.add(surname_L, 12, i+2);
 
             Label email_L = new Label(dataBaseManager.resultList.get(i).get("email").toString());
-            grid.add(email_L, 3, i+2);
+            grid.add(email_L, 13, i+2);
 
             Label access_L = new Label(dataBaseManager.resultList.get(i).get("access").toString());
-            grid.add(access_L, 4, i+2);
+            grid.add(access_L, 14, i+2);
 
 
         }
@@ -89,7 +89,7 @@ public class Administrator_ListOfUsers {
                 StartingPoint_Main.changeScene("ADMINISTRATOR MENU", new Administrator_Menu().getAdministratorMenu());
             }
         });
-        grid.add( button_GoBack, 0, dataBaseManager.resultList.size()+5);
+        grid.add( button_GoBack, 10, dataBaseManager.resultList.size()+5);
         //  END BUTTON
 
 
@@ -99,7 +99,6 @@ public class Administrator_ListOfUsers {
         ScrollPane scrollPane = new ScrollPane();
         scrollPane.setContent(imageHolder);
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
-
 
         Scene scene = new Scene(scrollPane, 1600,900);
         scene.getStylesheets().add(Login.class.getResource("Style.css").toExternalForm());
