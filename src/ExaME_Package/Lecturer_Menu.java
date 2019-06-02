@@ -65,6 +65,7 @@ public class Lecturer_Menu extends Application {
             @Override
             public void handle(ActionEvent event)
             {
+
                 StartingPoint_Main.changeScene("MAKE NEW TEST", new Lecturer_Make_New_Test().getLecturerMAekeNewTest());
             }
         });
@@ -74,16 +75,17 @@ public class Lecturer_Menu extends Application {
 
 
         Button button_generateKey = new Button();
-        button_generateKey.setText("GENERATE NEW KEY FOR A TEST // Na czas testow:  TIMER");
+        button_generateKey.setText("GENERATE NEW KEY FOR A TEST");
         button_generateKey.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event)
             {
                 try {
-                    StartingPoint_Main.changeScene("TIMER", new Timer().getTimer());
+                    StartingPoint_Main.changeScene("Change Key", new Lecturer_ChangeKey().getLecturer_ChangeKey());
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
                 }
+
             }
         });
         grid.add( button_generateKey, 0, 2);

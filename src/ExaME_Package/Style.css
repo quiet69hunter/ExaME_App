@@ -1,15 +1,18 @@
 root {
     display: block;
 }
+
 .root {
     -fx-background-color: #111111;
 }
+
 .label {
     -fx-font-size: 18px;
     -fx-font-weight: bold;
     -fx-text-fill: #ffffff;
     -fx-font-family:"Arial", Times, serif;
 }
+
 .scroll-pane .viewport {
     -fx-background-color: transparent;
 }
@@ -50,11 +53,3 @@ PasswordField {
     -fx-text-fill: white;
     -fx-background-color: #313131;
 }
-/*
-#navContainer {
-    -fx-font-size:30px;
-    -fx-font-weight: bold;
-    -fx-fill: #ffffff;
-    -fx-font-family:"Arial", Times, serif;
-    -fx-background-color: #070707;
-}*/
